@@ -1,0 +1,53 @@
+﻿@model Conris.DBA.ViewModel.CKRecordSearch
+           <script type="text/javascript" src="/Content/js/jquery.js"></script>
+   <link rel="stylesheet" type="text/css" href="/Content/Date/jquery.datetimepicker.css"/ >
+           <script src="/Content/Date/jquery.js"></script>
+<script src="/Content/Date/jquery.datetimepicker.js"></script>
+ @using (Html.BeginForm("CRecordManage", "CKRecord", new RouteValueDictionary { { "Page", "" } }, FormMethod.Get, new { @id = "UserSub" }))
+ {
+    <div class="search_style" >
+        <div style=" float:left; height:100%;text-align:center;padding:10px;">
+   
+              货号：@Html.TextBoxFor(m => m.ISBN, new { @style = "height:20px;" })
+        开始时间 @Html.TextBoxFor(m => m.StartTime)
+            结束时间 @Html.TextBoxFor(m => m.EndTime)
+             </div>
+        <div>    	<ul class="search_content clearfix">
+            
+             <li  onclick="Submit()" style="margin-top:10px;"><button type="button" class="btn_search">查询</button></li>
+   
+           
+        </ul>
+        </div>
+
+        
+   
+        </div>
+      <div class="tools" >
+   <div class="welinfo">
+   
+     <b>该时间段内销售额为 @TempData["Num"],总利润 @TempData["Tol"]</b>
+    </div>  
+        </div>
+ }
+<script type="text/ecmascript">
+    function Submit() {
+        $("#UserSub").submit();
+    }
+    $('#StartTime').datetimepicker();
+    $('#StartTime').datetimepicker({
+        lang: "ch",
+        format: "Y/m/d",
+        timepicker: false,
+        yearEnd: 2050,
+        todayButton: false
+    });
+    $('#EndTime').datetimepicker();
+    $('#EndTime').datetimepicker({
+        lang: "ch",
+        format: "Y/m/d",
+        timepicker: false,
+        yearEnd: 2050,
+        todayButton: false
+    });
+</script>

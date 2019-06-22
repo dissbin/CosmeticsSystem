@@ -1,0 +1,61 @@
+﻿@model List<DBA.Model.RRecord>
+
+
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+        <th>序号<i class="sort"><img src="/Content/images/px.gif" /></i></th>
+        <th>化妆品名</th>
+           <th>化妆品编号</th> 
+            <th>化妆品栏目</th> 
+          
+            <th>供货商</th>
+             <th>仓库</th>
+             <th>数量</th> 
+             <th>采购人</th> 
+            <th>提交时间</th> 
+             <th>过期时间</th> 
+            <th>状态</th> 
+            
+        @*<th>操作</th>*@
+        </tr>
+        </thead>
+        <tbody>
+              @if (Model != null && Model.Count > 0)
+{
+    int i = 0; 
+       DBA.BLL.Category CABLL=new DBA.BLL.Category();
+            foreach (var item in Model)
+        {
+            i++;    
+        <tr>
+        <td>@i</td>
+        <td>@item.BookName</td>
+            <td>@item.ISBN</td>
+            <td>@CABLL.GetModel(item.CategoryID).CategoryName</td>
+            
+             <td>@CABLL.GetModel(Convert.ToInt32(item.GHSID)).CategoryName</td>
+             <td>@CABLL.GetModel(Convert.ToInt32(item.CKID)).CategoryName</td>
+             <td>@item.Str1</td>
+             <td>@item.CreateUserName</td>
+             <td>@item.Time</td>
+            <td>@item.GG</td>
+            <td style="color:red;">即将过期</td>
+        <td>
+@*              @if (item.Str5 == "保质预警")
+                                  {
+                                      <a href="#" onclick="Edit(@item.ID)"   class="btn">已处理</a>
+                                  }*@
+          
+           
+        </td>
+        </tr>    
+            }
+} 
+        </tbody>
+    </table>
+    
+
+
+    
+

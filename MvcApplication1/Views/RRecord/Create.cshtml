@@ -1,0 +1,108 @@
+﻿@model DBA.Model.RRecord
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>入库</title>
+    <script src="../../Scripts/jquery-1.7.1.min.js"></script>
+<link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Style/js/jquery-1.8.3.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="/Content/Date/jquery.datetimepicker.css"/ >
+<script src="/Content/Date/jquery.js"></script>
+   
+<script src="/Content/Date/jquery.datetimepicker.js"></script>
+</head>
+
+<body class="add_test_img"  >
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">化妆品采购申请</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>化妆品采购</span></div>
+    <form method="post" action="/RRecord/Edit">
+    <ul class="forminfo">
+          <li><label>化妆品编号</label>@Html.TextBoxFor(m => m.ISBN, new { @class = "dfinput" })<input type="button" value="查找" onclick="cxbook()"/></li>
+         <li><label>化妆品名称</label>@Html.TextBoxFor(m => m.BookName, new { @class = "dfinput" })</li>
+          <li><label>化妆品单位</label>@Html.TextBoxFor(m => m.DW, new { @class = "dfinput" })</li>
+       
+          <li><label>供货商</label>@Html.DropDownList("GHSID",null, new { @class = "dfinput" })</li>
+          <li><label>仓库</label>@Html.DropDownList("CKID",null, new { @class = "dfinput" })</li>
+
+        @Html.HiddenFor(m => m.CategoryID)
+         @Html.HiddenFor(m => m.CreateUserName)
+          @Html.HiddenFor(m => m.BookID)
+          <li><label>采购单价</label>@Html.TextBoxFor(m => m.Str2, new { @class = "dfinput" })</li>
+         <li><label>数量</label>@Html.TextBoxFor(m => m.Str1, new { @class = "dfinput",@onchange="jisuan()" })</li>
+         <li><label>总价 </label>@Html.TextBoxFor(m => m.Str4, new { @class = "dfinput" })</li>
+        <li><label>过期时间</label>@Html.TextBoxFor(m => m.GG, new { @class = "dfinput" })</li>
+        <input type="hidden" name="Str5"  value="已提交"/>
+        @Html.HiddenFor(m=>m.ID)
+        @if (Model.ID==0)
+        {
+            <li><label>&nbsp;</label><input name="" style="border:0;" type="submit" class="btn" value="确认保存"/></li>
+        }
+    
+    </ul>
+    </form>
+    
+    </div>
+
+
+</body>
+
+</html>
+<script type="text/ecmascript">
+    $("#GHSID").val('@Model.GHSID');
+    $("#CKID").val('@Model.CKID');
+    $('#GG').datetimepicker();
+    $('#GG').datetimepicker({
+        lang: "ch",
+        dayOfWeekStart: 1,
+        disabledDates: ['1986/01/08', '1986/01/09', '1986/01/10'],
+        startDate: '1986/01/05',        step: 10
+    });
+    function jisuan() {
+       
+        var dj = $("#Str2").val();
+        $("#Str4").val(parseFloat(dj) * parseFloat($("#Str1").val()));
+    }
+
+   
+
+    function cxbook() {
+        var ISBN = $("#ISBN").val();
+        $.ajax({
+            type: "post",
+            traditional: true,
+            url: "/Goods/GetGoods",
+            data: { ISBN: ISBN},
+            datatpye: "json",
+            success: function (data) {
+                if (data&&data.length>0) {
+                    $("#BookName").val(data[0].GoodsName);
+                    $("#CategoryID").val(data[0].CategoryID);
+                    $("#BookID").val(data[0].ID);
+                    $("#DW").val(data[0].GoodsCBS);
+                }
+                else {
+                    alert("请输入正确的化妆品编号~");
+                }
+            }
+        });
+    }
+</script>
+
+

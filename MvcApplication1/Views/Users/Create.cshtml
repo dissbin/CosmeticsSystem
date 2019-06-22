@@ -1,0 +1,67 @@
+﻿@model DBA.Model.Users
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+    <script src="../../Scripts/jquery-1.7.1.min.js"></script>
+<link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="add_test_img"  >
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">添加用户</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>添加用户</span></div>
+    <form method="post" action="/Users/Edit?ID=@Model.ID">
+    <ul class="forminfo">
+         <li><label>用户类型</label><select class="dfinput" id="selUserType" name="Usertype">
+                                         <option value="">请选择</option>
+                                         <option value="管理员">管理员</option>
+                                         <option value="采购员">采购员</option>
+                                         <option value="销售员">销售员</option>
+         
+                                        <option value="退货员">退货员</option>
+        
+                                    </select></li>
+          <li><label>用户名/手机号码</label>@Html.TextBoxFor(m => m.LoginName, new { @class = "dfinput" })</li>
+        <li><label>密码</label>@Html.TextBoxFor(m => m.LoginPSD, new { @class = "dfinput" })</li>
+
+         <li><label>姓名</label>@Html.TextBoxFor(m => m.UserName, new { @class = "dfinput" })</li>
+        <li><label>性别</label><select name="Sex" id="Sex" >
+            <option value="男">男</option>
+            <option value="女">女</option>
+                             </select>
+            @Html.TextBoxFor(m => m.Sex, new { @class = "dfinput" })</li>
+        <li><label>年龄</label>@Html.TextBoxFor(m => m.Age, new { @class = "dfinput" })</li>
+
+        @Html.HiddenFor(m=>m.ID)
+    <li><label>&nbsp;</label><input name="" style="border:0;" type="submit" class="btn" value="确认保存"/></li>
+    </ul>
+    </form>
+    
+    </div>
+
+
+</body>
+
+</html>
+
+<script type="text/ecmascript">
+    $("#Sex").val('@Model.Sex');
+    $("#selUserType").val('@Model.Usertype');
+</script>

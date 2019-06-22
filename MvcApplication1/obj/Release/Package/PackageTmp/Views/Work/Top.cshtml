@@ -1,0 +1,75 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="/Content/js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //顶部导航切换
+        $(".nav li a").click(function () {
+            $(".nav li a.selected").removeClass("selected")
+            $(this).addClass("selected");
+        })
+    })
+</script>
+
+
+</head>
+
+<body style="background:url(/Content/images/topbg.gif) repeat-x;">
+
+    <div class="topleft">
+    <a href="/Work/Index" target="_parent"><img src="/Content/images/loginlogo.png" title="系统首页" /></a>
+    </div>
+          @{
+          Conris.DBA.Model.UserType UserType=Conris.Services.AdminUserService.GetNowUserType();
+          }
+    <ul class="nav">
+    <li><a href="/Work/main" target="rightFrame" class="selected"><img src="/Content/images/icon01.png" title="工作台" /><h2>工作台</h2></a></li>
+        <li><a href="/Category/NewsCategoryManager" target="rightFrame" ><img src="/Content/images/icon05.png" title="工作台" /><h2>信息列表</h2></a></li>
+    <li><a href="/ZbTask/TaskManage" target="rightFrame"><img src="/Content/images/icon02.png" title="招标代理" /><h2>工作流程</h2></a></li>
+    <li><a href="/NewsMain/YNewsManager"  target="rightFrame"><img src="/Content/images/icon03.png" title="造价咨询" /><h2>内部邮件</h2></a></li>
+       
+   @* <li><a href="tab.html"  target="rightFrame"><img src="/Content/images/icon06.png" title="系统设置" /><h2>系统设置</h2></a></li>*@
+    </ul>
+            
+    <div class="topright">   
+        <div class="user">
+    <span><a href="#" id="Edit">@Conris.Services.AdminUserService.GetNowUserName()</a>&nbsp;&nbsp;<a  id="btnQiut" >退出</a></span>
+    
+    </div> 
+   
+  
+    
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+       
+        $("#Edit").click(function () {
+            var frameid = parent.document.getElementById("rightFrame");  
+            frameid.src = "/Work/EditPsd";
+            //parent.location.href = "/Work/EditPsd";
+        });
+        $("#btnQiut").click(function () {
+            $.ajax({
+                type: "post",
+                url: "/Home/LogOff",
+                success: function (data) {
+                    if (data) {
+                        parent.location.href = "/Home/Login";
+                    }
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,47 @@
+﻿@model List<DBA.Model.Evaluate>
+
+
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+       
+           
+             <th>年度</th>
+            <th>月度</th>
+      
+             <th>供货商</th>
+                 <th>分数</th>
+            <th>附件</th>
+        <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+              @if (Model != null && Model.Count > 0)
+{
+    int i = 0;
+            foreach (var item in Model)
+        {
+           
+        <tr>
+        <td>@item.ND</td>
+             <td>@item.YD</td>
+    <td>@item.GHS</td>
+        <td>@item.Score</td>
+              <td><a href="/Scripts/kindeditor/attached/image/@item.EUrl">下载</a></td>
+        <td><a href="/Warning/Create?ID=@item.ID"   >查看或修改</a> 
+              @if (DBA.BLL.Users.GetNowUserType()=="管理员")
+              {
+            <a href="#" onclick="Del(@item.ID)"   >删除</a> 
+              }
+           
+        </td>
+        </tr>    
+            }
+} 
+        </tbody>
+    </table>
+    
+
+
+    
+

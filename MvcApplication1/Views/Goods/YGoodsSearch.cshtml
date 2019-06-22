@@ -1,0 +1,29 @@
+﻿@model Conris.DBA.ViewModel.GoodsSearch
+           <script type="text/javascript" src="/Content/js/jquery.js"></script>
+ @using (Html.BeginForm("YManage", "Goods", new RouteValueDictionary { { "Page", "" } }, FormMethod.Get, new { @id = "UserSub" }))
+ {
+    <div class="tools" >
+        <div style=" float:left; height:100%;text-align:center;padding:10px;">
+    化妆品名：@Html.TextBoxFor(m => m.GoodsName, new { @style = "height:20px;" })
+              栏目：@Html.DropDownList("CategoryID")
+            
+             化妆品编号：@Html.TextBoxFor(m => m.ISBN, new { @style = "height:20px;" })
+            
+             </div>
+        <div>    	<ul class="toolbar" >
+            
+            <li  onclick="Submit()"><span><img src="/Content/images/ico06.png"  /></span>搜索</li>
+   
+           
+        </ul>
+        </div>
+
+        
+   
+        </div>
+ }
+<script type="text/ecmascript">
+    function Submit() {
+        $("#UserSub").submit();
+    }
+</script>

@@ -1,0 +1,63 @@
+﻿@model Conris.DBA.ViewModel.CKRecordSearch
+@{
+    ViewBag.Title = "DepartmentManage";
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Content/js/jquery.js"></script>
+
+      <link rel="stylesheet" href="/Style/assets/css/ace.min.css" />
+     <link rel="stylesheet" href="/Style/css/style.css"/>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".click").click(function () {
+            $(".tip").fadeIn(200);
+        });
+
+        $(".tiptop a").click(function () {
+            $(".tip").fadeOut(200);
+        });
+
+
+
+        $(".cancel").click(function () {
+            $(".tip").fadeOut(100);
+        });
+
+    });
+</script>
+
+
+</head>
+
+
+<body>
+
+    
+    <div class="rightinfo">
+    
+
+    @Html.Action("CKRecordSearch", Model)
+    @Html.Action("CKRecordList", Model)
+    
+    
+    
+    
+    
+    
+    </div>
+    
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+
+</body>
+
+</html>
+<input type="hidden" id="hidID" />

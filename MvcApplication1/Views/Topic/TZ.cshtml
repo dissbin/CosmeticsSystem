@@ -1,0 +1,41 @@
+﻿
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="warp">
+  <div class="ads">
+    <img alt="" src="/Content/images/banner2.jpg" width="100%">
+  </div>
+  <div class="listpage clearfix">
+    
+    <div class="rcon">
+      <ol class="breadcrumb">
+        <li><a href="#">文学网</a></li>
+       
+      </ol>
+        @if (TempData["Title"]!=null)
+        {
+         <iframe src="/Topic/TopicManage?Title=@TempData["Title"]" style="width:1000px;height:800px;"></iframe>   
+        }
+        else
+        {
+     <iframe src="/Topic/TopicManage" style="width:1000px;height:800px;"></iframe>
+        }
+    
+    </div>
+  </div>
+</div>
+<script type="text/ecmascript">
+    function getQueryString(key) {
+        var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+        var result = window.location.search.substr(1).match(reg);
+        return result ? decodeURIComponent(result[2]) : null;
+    }
+    $(function () {
+        var cs = getQueryString("Category");
+        $("#lixx").html("-" + cs);
+    });
+</script>

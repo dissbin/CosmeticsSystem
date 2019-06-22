@@ -1,0 +1,588 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>星美化妆品进销存系统  </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="/Style/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/Style/assets/css/font-awesome.min.css" />
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="/Style/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="/Style/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="/Style/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="/Style/assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="/Style/css/style.css"/>
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="/Style/assets/css/ace-ie.min.css" />
+		<![endif]-->
+		<script src="/Style/assets/js/ace-extra.min.js"></script>
+		<!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+        		<!--[if !IE]> -->
+		<script src="/Style/assets/js/jquery.min.js"></script>        
+		<!-- <![endif]-->
+	</head>
+	<body>
+		<div class="navbar navbar-default" id="navbar">
+        <script type="text/javascript">
+            try { ace.settings.check('navbar', 'fixed') } catch (e) { }
+			</script>
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>					
+						<img src="/Style/images/logo1.png">
+						</small>
+					</a><!-- /.brand -->
+				</div><!-- /.navbar-header -->
+				<div class="navbar-header pull-right" role="navigation">
+                   <div class="get_time" ><span id="time"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>欢迎光临,@DBA.BLL.Users.GetNowUserName()</span></div>
+					<ul class="nav ace-nav">	
+						<li><a href="javascript:ovid(0)" class="change_Password">修改密码</a></li>
+                        <li><a href="javascript:ovid(0)" id="Exit_system">退出系统</a></li>
+                       
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+		<div class="main-container" id="main-container">
+        <script type="text/javascript">
+            try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+			</script>
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+				<div class="sidebar" id="sidebar">
+<script type="text/javascript">
+    try { ace.settings.check('sidebar', 'fixed') } catch (e) { }
+					</script>
+					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                     <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+						星美化妆品进销存系统  
+						</div>
+						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+							<span class="btn btn-success"></span>
+							<span class="btn btn-info"></span>
+							<span class="btn btn-warning"></span>
+							<span class="btn btn-danger"></span>
+						</div>
+					</div><!-- #sidebar-shortcuts -->
+					<ul class="nav nav-list" id="nav_list">
+				     <li class="home"><a href="javascript:void(0)" name="/Goods/GoodsManage" class="iframeurl" title=""><i class="icon-dashboard"></i><span class="menu-text"> 系统首页 </span></a></li>
+                        @if (DBA.BLL.Users.GetNowUserType() == "管理员")
+                        {
+                             <li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 化妆品类别管理</span><b class="arrow icon-angle-down"></b></a>
+					   <ul class="submenu">
+                             <li class="home"><a href="javascript:void(0)" name="/Category/CategoryManage" title="化妆品类别管理"  class="iframeurl"><i class="icon-double-angle-right"></i>化妆品类别管理</a></li>
+                             <li class="home"><a href="javascript:void(0)" name="/Category/Create" title="添加化妆品类别"  class="iframeurl"><i class="icon-double-angle-right"></i>添加化妆品类别</a></li>
+                            
+						</ul>
+					</li>
+                            <li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 仓库管理</span><b class="arrow icon-angle-down"></b></a>
+					   <ul class="submenu">
+                               <li class="home"><a href="javascript:void(0)" name="/Category/CCategoryManage" title="仓库信息管理"  class="iframeurl"><i class="icon-double-angle-right"></i>仓库信息管理</a></li>
+                             <li class="home"><a href="javascript:void(0)" name="/Category/CCreate" title="添加仓库"  class="iframeurl"><i class="icon-double-angle-right"></i>添加仓库</a></li>
+                             
+						</ul>
+					</li>
+                             <li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 供货商管理</span><b class="arrow icon-angle-down"></b></a>
+					   <ul class="submenu">
+                               <li class="home"><a href="javascript:void(0)" name="/Category/GCategoryManage" title="供货商管理"  class="iframeurl"><i class="icon-double-angle-right"></i>供货商管理</a></li>
+                             <li class="home"><a href="javascript:void(0)" name="/Category/GCreate" title="添加供货商"  class="iframeurl"><i class="icon-double-angle-right"></i>添加供货商</a></li>
+                            
+						</ul>
+					</li>
+                             <li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 预警设置管理</span><b class="arrow icon-angle-down"></b></a>
+					   <ul class="submenu">
+                               <li class="home"><a href="javascript:void(0)" name="/Warning/WarningManage" title="预警阀值"  class="iframeurl"><i class="icon-double-angle-right"></i>预警阀值</a></li>
+                                            <li class="home"><a href="javascript:void(0)" name="/Warning/Create" title="添加预警阀值"  class="iframeurl"><i class="icon-double-angle-right"></i>添加预警阀值</a></li>
+                                           
+						</ul>
+					</li>
+                                                         <li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 化妆品管理</span><b class="arrow icon-angle-down"></b></a>
+					   <ul class="submenu">
+                               <li class="home"><a href="javascript:void(0)" name="/Goods/GoodsManage" title="添加信息"  class="iframeurl"><i class="icon-double-angle-right"></i>化妆品管理</a></li>
+                             <li class="home"><a href="javascript:void(0)" name="/Goods/Create" title="化妆品管理"  class="iframeurl"><i class="icon-double-angle-right"></i>添加化妆品</a></li>
+                              
+						</ul>
+					</li>
+                     <li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 用户管理</span><b class="arrow icon-angle-down"></b></a>
+					   <ul class="submenu">
+                              <li class="home"><a href="javascript:void(0)" name="/Users/UsersManage" title="用户管理"  class="iframeurl"><i class="icon-double-angle-right"></i>用户管理</a></li>
+                                            <li class="home"><a href="javascript:void(0)" name="/Users/Create" title="添加用户"  class="iframeurl"><i class="icon-double-angle-right"></i>添加用户</a></li>
+                      
+						</ul>
+					</li>
+                            <li>
+					<a href="#" class="dropdown-toggle"><i class="icon-list"></i><span class="menu-text"> 进销存管理 </span><b class="arrow icon-angle-down"></b></a>
+                    <ul class="submenu">
+                           <li class="home"><a href="javascript:void(0)" name="/Goods/GoodsManage" title="器材管理"  class="iframeurl"><i class="icon-double-angle-right"></i>库存查询</a></li>
+  
+
+                    <li class="home"><a href="javascript:void(0)" name="/RRecord/RRecordManage" title="j采购审核"  class="iframeurl"><i class="icon-double-angle-right"></i>进货明细</a></li>
+   <li class="home"><a href="javascript:void(0)" name="/CKRecord/CKRecordManage" title="销售明细"  class="iframeurl"><i class="icon-double-angle-right"></i>销售明细</a></li>
+                           <li class="home"><a href="javascript:void(0)" name="/Goods/GoodsManage?GoodsNum=测试" title="库存预警"  class="iframeurl"><i class="icon-double-angle-right"></i>库存预警</a></li>
+                               
+                   <li class="home"><a href="javascript:void(0)" name="/CKRecord/CRecordManage" title="利润统计"  class="iframeurl"><i class="icon-double-angle-right"></i>利润统计</a></li>
+
+                           </ul>
+				  </li>
+                              <li>
+					<a href="#" class="dropdown-toggle"><i class="icon-list"></i><span class="menu-text">退货管理 </span><b class="arrow icon-angle-down"></b></a>
+                    <ul class="submenu">
+   <li class="home"><a href="javascript:void(0)" name="/Topic/TopicManage" title="退货明细"  class="iframeurl"><i class="icon-double-angle-right"></i>退货明细</a></li>
+                   </ul>
+				  </li>
+                            <li><a href="#" class="dropdown-toggle"><i class="icon-edit"></i><span class="menu-text"> 统计 </span><b class="arrow icon-angle-down"></b></a>
+							<ul class="submenu">
+            @*<li class="home"><a href="javascript:void(0)" name="/JobNews/Create" title="添加信息"  class="iframeurl"><i class="icon-double-angle-right"></i>添加信息</a></li>*@
+                                <li class="home"><a href="javascript:void(0)" name="/CKRecord/CKRecordCountManage" title="统计销售" class="iframeurl"><i class="icon-double-angle-right"></i>销售统计</a></li>
+                                <li class="home"><a href="javascript:void(0)" name="/RRecord/RRecordCountManage" title="统计销售" class="iframeurl"><i class="icon-double-angle-right"></i>进货统计</a></li>
+            
+							</ul>
+						</li>
+                        }
+                        else if (DBA.BLL.Users.GetNowUserType() == "采购员")
+                        {
+                          <li>
+					<a href="#" class="dropdown-toggle"><i class="icon-list"></i><span class="menu-text"> 采购管理 </span><b class="arrow icon-angle-down"></b></a>
+                    <ul class="submenu">
+                          <li class="home"><a href="javascript:void(0)" name="/Goods/YManage" title="库存预警"  class="iframeurl"><i class="icon-double-angle-right"></i>库存预警</a></li>
+                                    <li class="home"><a href="javascript:void(0)" name="/RRecord/YManage" title="保质预警"  class="iframeurl"><i class="icon-double-angle-right"></i>保质预警</a></li>
+                           <li class="home"><a href="javascript:void(0)" name="/Goods/GoodsManage" title="库存查询"  class="iframeurl"><i class="icon-double-angle-right"></i>库存查询</a></li>
+   <li class="home"><a href="javascript:void(0)" name="/RRecord/RRecordManage" title="采购管理"  class="iframeurl"><i class="icon-double-angle-right"></i>采购管理</a></li>
+                    <li class="home"><a href="javascript:void(0)" name="/RRecord/Create" title="我要采购"  class="iframeurl"><i class="icon-double-angle-right"></i>我要采购</a></li>
+                                                         
+
+                         </ul>
+                      
+				  </li>
+                        }
+                        else if (DBA.BLL.Users.GetNowUserType() == "销售员")
+                        {
+                           <li>
+					<a href="#" class="dropdown-toggle"><i class="icon-list"></i><span class="menu-text"> 销售管理 </span><b class="arrow icon-angle-down"></b></a>
+                    <ul class="submenu">
+                           <li class="home"><a href="javascript:void(0)" name="/Goods/GoodsManage" title="库存查询"  class="iframeurl"><i class="icon-double-angle-right"></i>库存查询</a></li>
+   <li class="home"><a href="javascript:void(0)" name="/CKRecord/CKRecordManage" title="销售明细"  class="iframeurl"><i class="icon-double-angle-right"></i>销售明细</a></li>
+                    <li class="home"><a href="javascript:void(0)" name="/CKRecord/Create" title="我要销售"  class="iframeurl"><i class="icon-double-angle-right"></i>我要销售</a></li>
+                        <li class="home"><a href="javascript:void(0)" name="/RRecord/YManage" title="保质预警"  class="iframeurl"><i class="icon-double-angle-right"></i>保质预警</a></li>
+                               </ul>
+				  </li>
+                             <li>
+					<a href="#" class="dropdown-toggle"><i class="icon-list"></i><span class="menu-text"> 客户管理 </span><b class="arrow icon-angle-down"></b></a>
+                    <ul class="submenu">
+                           <li class="home"><a href="javascript:void(0)" name="/Users/UsersManage?UserType=客户" title="客户信息"  class="iframeurl"><i class="icon-double-angle-right"></i>客户信息</a></li>
+                           <li class="home"><a href="javascript:void(0)" name="/Users/UCreate" title="添加客户"  class="iframeurl"><i class="icon-double-angle-right"></i>添加客户</a></li>
+                  </ul>
+				  </li>
+                        }
+                        else
+                        {
+                         <li>
+					<a href="#" class="dropdown-toggle"><i class="icon-list"></i><span class="menu-text">退货管理 </span><b class="arrow icon-angle-down"></b></a>
+                    <ul class="submenu">
+   <li class="home"><a href="javascript:void(0)" name="/Topic/TopicManage" title="退货明细"  class="iframeurl"><i class="icon-double-angle-right"></i>退货明细</a></li>
+                    <li class="home"><a href="javascript:void(0)" name="/Topic/Create" title="添加退货"  class="iframeurl"><i class="icon-double-angle-right"></i>添加退货</a></li>
+                   </ul>
+				  </li>
+                        }
+						
+					</ul><!-- /.nav-list -->
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+                    <script type="text/javascript">
+                        try { ace.settings.check('sidebar', 'collapsed') } catch (e) { }
+					</script>
+				</div>
+				<div class="main-content">
+                <script type="text/javascript">
+                    try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+						</script>
+					<div class="breadcrumbs" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="index.html">首页</a>
+							</li>
+							<li class="active"><span class="Current_page"></span></li>
+                            <li class="active" id="parentIframe"><span class="parentIframe"></span></li>
+						</ul>
+					</div>
+                    
+                 <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;"  frameborder="0" src="/Goods/GoodsManage">  </iframe>
+				 
+
+<!-- /.page-content -->
+				</div><!-- /.main-content -->	
+                
+                <!-- /#ace-settings-container -->		
+			</div><!-- /.main-container-inner -->
+			
+		</div>
+         <!--底部样式-->
+       
+         <div class="footer_style" id="footerstyle">  
+          <p class="lf">版权所有：星美化妆品进销存系统</p>
+        
+         </div>
+         <!--修改密码样式-->
+         <div class="change_Pass_style" id="change_Pass">
+            <ul class="xg_style">
+             <li><label class="label_name">原&nbsp;&nbsp;密&nbsp;码</label><input name="原密码" type="password" class="" id="password"></li>
+             <li><label class="label_name">新&nbsp;&nbsp;密&nbsp;码</label><input name="新密码" type="password" class="" id="Nes_pas"></li>
+             <li><label class="label_name">确认密码</label><input name="再次确认密码" type="password" class="" id="c_mew_pas"></li>
+              
+            </ul>
+     <!--       <div class="center"> <button class="btn btn-primary" type="button" id="submit">确认修改</button></div>-->
+         </div>
+        <!-- /.main-container -->
+		<!-- basic scripts -->
+		<script src="js/jquery.js" type="text/javascript"></script>
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+		    window.jQuery || document.write("<script src='/Style/assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
+		</script>
+		<!-- <![endif]-->
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+</script>
+<![endif]-->
+		<script type="text/javascript">
+		    if ("ontouchend" in document) document.write("<script src='/Style/assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
+		</script>
+		<script src="/Style/assets/js/bootstrap.min.js"></script>
+		<script src="/Style/assets/js/typeahead-bs2.min.js"></script>
+		<!-- page specific plugin scripts -->
+		<!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+		<!-- ace scripts -->
+		<script src="/Style/assets/js/ace-elements.min.js"></script>
+		<script src="/Style/assets/js/ace.min.js"></script>
+        <script src="/Style/assets/layer/layer.js" type="text/javascript"></script>
+		<!-- inline scripts related to this page -->
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        //初始化宽度、高度    
+        $("#main-container").height($(window).height() - 76);
+        $("#iframe").height($(window).height() - 155);
+        $(".sidebar").height($(window).height() - 99);
+        var thisHeight = $("#nav_list").height($(window).height() - 185);
+        $(".submenu").height($(thisHeight).height() - 160);
+        $("#nav_list").children(".submenu").css("height", thisHeight);
+
+        //当文档窗口发生改变时 触发  
+        $(window).resize(function () {
+            $("#main-container").height($(window).height() - 76);
+            $("#iframe").height($(window).height() - 155);
+            $(".sidebar").height($(window).height() - 99);
+            var thisHeight = $("#nav_list").height($(window).height() - 185);
+            $(".submenu").height($(thisHeight).height() - 160);
+            $("#nav_list").children(".submenu").css("height", thisHeight);
+        });
+        $(".iframeurl").bind("click", function () {
+            var cid = $(this).attr("name");
+            var cname = $(this).attr("title");
+            $("#iframe").attr("src", cid).ready();
+            $("#Bcrumbs").attr("href", cid).ready();
+            $(".Current_page a").attr('href', cid).ready();
+            $(".Current_page").html(cname).ready();
+            $("#parentIframe").html("").css("display", "none").ready();
+        });
+
+    });
+    //jQuery( document).ready(function(){
+    //	  $("#submit").click(function(){
+    //	// var num=0;
+    //     var str="";
+    //     $("input[type$='password']").each(function(n){
+    //          if($(this).val()=="")
+    //          {
+    //              // num++;
+    //			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
+    //                title: '提示框',				
+    //				icon:0,				
+    //          }); 
+    //             // layer.msg(str+=""+$(this).attr("name")+"不能为空！\r\n");
+    //             layer.close(index);
+    //          }		  
+    //     });    
+    //})		
+    //	});
+    /*********************点击事件*********************/
+    $(document).ready(function () {
+        $('#nav_list').find('li.home').click(function () {
+            $('#nav_list').find('li.home').removeClass('active');
+            $(this).addClass('active');
+        });
+
+    })
+    //时间设置
+    function currentTime() {
+        var d = new Date(), str = '';
+        str += d.getFullYear() + '年';
+        str += d.getMonth() + 1 + '月';
+        str += d.getDate() + '日';
+        str += d.getHours() + '时';
+        str += d.getMinutes() + '分';
+        str += d.getSeconds() + '秒';
+        return str;
+    }
+    setInterval(function () { $('#time').html(currentTime) }, 1000);
+    //修改密码
+    $('.change_Password').on('click', function () {
+        layer.open({
+            type: 1,
+            title: '修改密码',
+            area: ['300px', '300px'],
+            shadeClose: true,
+            content: $('#change_Pass'),
+            btn: ['确认修改'],
+            yes: function (index, layero) {
+                if ($("#password").val() == "") {
+                    layer.alert('原密码不能为空!', {
+                        title: '提示框',
+                        icon: 0,
+
+                    });
+                    return false;
+                }
+                if ($("#Nes_pas").val() == "") {
+                    layer.alert('新密码不能为空!', {
+                        title: '提示框',
+                        icon: 0,
+
+                    });
+                    return false;
+                }
+
+                if ($("#c_mew_pas").val() == "") {
+                    layer.alert('确认新密码不能为空!', {
+                        title: '提示框',
+                        icon: 0,
+
+                    });
+                    return false;
+                }
+                if (!$("#c_mew_pas").val || $("#c_mew_pas").val() != $("#Nes_pas").val()) {
+                    layer.alert('密码不一致!', {
+                        title: '提示框',
+                        icon: 0,
+
+                    });
+                    return false;
+                }
+                else {
+                    $.ajax({
+                        type: "post",
+                        url: "/Home/EditMM",
+                        data: { Old: $("#password").val(), Newpsd: $("#c_mew_pas").val() },
+                        success: function (data) {
+                            if (data) {
+                                layer.alert('修改成功！', {
+                                    title: '提示框',
+                                    icon: 1,
+                                });
+                                layer.close(index);
+                            }
+                            else
+
+                            {
+                                layer.alert('修改失败，原密码错误!', {
+                                    title: '提示框',
+                                    icon: 0,
+
+                                });
+                            }
+                        }
+                    });
+                   
+                }
+            }
+        });
+    });
+    $('#Exit_system').on('click', function () {
+        layer.confirm('是否确定退出系统？', {
+            btn: ['是', '否'] //按钮
+        },
+      function () {
+          $.ajax({
+              type: "post",
+              url: "/Home/LogOff",
+              success: function (data) {
+                  if (data) {
+                      parent.location.href = "/Home/Login";
+                  }
+              }
+          });
+
+      });
+    });
+</script>	
+</body>
+</html>
+
+
+
+
+@*@{
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/Content/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/Content/css/jquery.dialog.css" />
+<link rel="stylesheet" href="/Content/css/index.css" />
+
+<title>企业采购管理系统</title>
+  
+</head>
+
+<body>
+<div id="container">
+	<div id="hd">
+    	<div class="hd-wrap ue-clear">
+        	<div class="top-light"></div>
+            <h1 class="logo" style="width:240px;"></h1>
+            <div class="login-info ue-clear">
+                <div class="welcome ue-clear"><span>欢迎您，@DBA.BLL.Users.GetNowUserName()</span></div>
+              
+            </div>
+            <div class="toolbar ue-clear">
+             
+                 <a href="javascript:;"    class="quit-btn exit"></a>
+            </div>
+        </div>
+    </div>
+    <div id="bd">
+    	<div class="wrap ue-clear">
+        	<div class="sidebar">
+            	<h2 class="sidebar-header"><p>功能导航</p></h2>
+                 <ul class="nav">
+                     @if (DBA.BLL.Users.GetNowUserType() == "管理员")
+                     {
+                           <li class="office current"><div class="nav-header"><a href="javascript:;"  class="ue-clear"><span>基本信息管理</span><i class="icon"></i></a></div>
+                          <ul class="subnav">
+                        	<li><a href="javascript:;" date-src="/Category/CategoryManage">化妆品类别管理</a></li>
+                            <li><a href="javascript:;" date-src="/Category/Create">添加化妆品类别</a></li>
+                              <li><a href="javascript:;" date-src="/Goods/GoodsManage">化妆品管理</a></li>
+                            <li><a href="javascript:;" date-src="/Goods/Create">添加化妆品</a></li>
+                                  <li><a href="javascript:;" date-src="/Category/CCategoryManage">仓库信息管理</a></li>
+                            <li><a href="javascript:;" date-src="/Category/CCreate">添加仓库</a></li>
+                                  <li><a href="javascript:;" date-src="/Category/GCategoryManage">供货商管理</a></li>
+                            <li><a href="javascript:;" date-src="/Category/GCreate">添加供货商</a></li>
+                                   <li><a href="javascript:;" date-src="/Warning/WarningManage">预警阀值</a></li>
+                            <li><a href="javascript:;" date-src="/Warning/Create">添加预警阀值</a></li>
+                              <li><a href="javascript:;" date-src="/Users/UsersManage">用户管理</a></li>
+                            <li><a href="javascript:;" date-src="/Users/Create">添加用户</a></li>
+                        </ul>
+                	</li>
+                         <li class="office "><div class="nav-header"><a href="javascript:;"  class="ue-clear"><span>采购管理</span><i class="icon"></i></a></div>
+                          <ul class="subnav">
+                               <li><a href="javascript:;" date-src="/RRecord/Create">化妆品采购</a></li>
+                              <li><a href="javascript:;" date-src="/RRecord/RRecordManage">采购管理</a></li>
+                        	
+
+                        </ul>
+                	</li>
+                       
+                     }
+                     else
+                     {
+                     <li class="office "><div class="nav-header"><a href="javascript:;"  class="ue-clear"><span>采购管理</span><i class="icon"></i></a></div>
+                          <ul class="subnav">
+                        	<li><a href="javascript:;" date-src="/RRecord/RRecordManage">采购管理</a></li>
+                             
+                            <li><a href="javascript:;" date-src="/RRecord/Create">化妆品采购</a></li>
+                               
+                        </ul>
+                	</li>
+                        
+                     }
+                         <li class="office "><div class="nav-header"><a href="javascript:;"  class="ue-clear"><span>库存管理</span><i class="icon"></i></a></div>
+                          <ul class="subnav">
+                               <li><a href="javascript:;" date-src="/Goods/GoodsManage">库存管理</a></li>
+                   
+                             
+                           
+                              	<li><a href="javascript:;" date-src="/Goods/YManage?Flag=1">库存预警</a></li>
+                             
+                         
+                        </ul>
+                	</li>
+                     
+                        </ul>
+            </div>
+            <div class="content">
+            	<iframe src="/Goods/GoodsManage" id="iframe" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+    <div id="ft" class="ue-clear">
+    	<div class="ft-left">
+            <span></span>
+           
+        </div>
+        <div class="ft-right">
+            <span></span>
+            <em>2016</em>
+        </div>
+    </div>
+</div>
+<div class="exitDialog">
+	<div class="dialog-content">
+    	<div class="ui-dialog-icon"></div>
+        <div class="ui-dialog-text">
+        	<p class="dialog-content">你确定要退出系统？</p>
+            <p class="tips">如果是请点击“确定”，否则点“取消”</p>
+            
+            <div class="buttons">
+                <input type="button" class="button long2 ok" value="确定" id="btnQiut" />
+                <input type="button" class="button long2 normal" value="取消" />
+            </div>
+        </div>
+        
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/Content/js/jquery.js"></script>
+<script type="text/javascript" src="/Content/js/common.js"></script>
+<script type="text/javascript" src="/Content/js/core.js"></script>
+<script type="text/javascript" src="/Content/js/jquery.dialog.js"></script>
+<script type="text/javascript" src="/Content/js/index.js"></script>
+
+</html>
+<script type="text/javascript">
+    
+    $(function () {
+
+       
+        $("#btnQiut").click(function () {
+            $.ajax({
+                type: "post",
+                url: "/Home/LogOff",
+                success: function (data) {
+                    if (data) {
+                        parent.location.href = "/Home/Login";
+                    }
+                }
+            });
+        });
+    });
+</script>
+*@

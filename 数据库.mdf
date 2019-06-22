@@ -1,0 +1,839 @@
+USE [JXC]
+GO
+/****** Object:  Table [dbo].[Book]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Book](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[BookName] [nchar](20) NULL,
+	[BookCBS] [nchar](50) NULL,
+	[ISBN] [nchar](10) NULL,
+	[BookZZ] [nchar](10) NULL,
+	[BookKC] [int] NULL,
+	[Price] [nchar](10) NULL,
+	[CategoryID] [int] NOT NULL,
+	[Str1] [nchar](10) NULL,
+	[Str2] [nchar](10) NULL,
+	[BookKey] [nchar](10) NULL,
+	[BookJJ] [nchar](500) NULL,
+ CONSTRAINT [PK_Book] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Category]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CategoryName] [nchar](10) NULL,
+	[Str1] [nchar](10) NULL,
+	[DZ] [nvarchar](200) NULL,
+	[LXFS] [nvarchar](200) NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Chapter]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Chapter](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[BookName] [nvarchar](50) NULL,
+	[BookID] [nvarchar](50) NULL,
+	[UserID] [nvarchar](50) NULL,
+	[UserName] [nvarchar](50) NULL,
+	[OrderID] [nvarchar](50) NULL,
+	[ZContent] [ntext] NULL,
+	[Time] [nvarchar](50) NULL,
+	[Str1] [nvarchar](50) NULL,
+	[Str2] [nvarchar](50) NULL,
+	[Str3] [nvarchar](50) NULL,
+	[Str4] [nvarchar](50) NULL,
+	[Str5] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Chapter] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[CKRecord]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CKRecord](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CreateUserName] [nchar](10) NULL,
+	[ISBN] [nchar](30) NULL,
+	[Time] [datetime] NULL,
+	[BookID] [int] NULL,
+	[BookName] [nchar](50) NULL,
+	[Num] [int] NULL,
+	[Price] [nchar](50) NULL,
+	[Str1] [nchar](10) NULL,
+	[Str2] [nchar](10) NULL,
+	[Str3] [nchar](10) NULL,
+ CONSTRAINT [PK_CKRecord] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Evaluate]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Evaluate](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[GHSID] [nvarchar](200) NULL,
+	[GHS] [nvarchar](200) NULL,
+	[ND] [nvarchar](200) NULL,
+	[YD] [nvarchar](200) NULL,
+	[Score] [nvarchar](200) NULL,
+	[EUrl] [nvarchar](200) NULL,
+	[Str1] [nvarchar](200) NULL,
+	[Str2] [nvarchar](200) NULL,
+	[Str3] [nvarchar](200) NULL,
+ CONSTRAINT [PK_Evaluate] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Goods]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Goods](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[GoodsName] [nchar](20) NULL,
+	[GoodsCBS] [nchar](50) NULL,
+	[ISBN] [nchar](10) NULL,
+	[GoodsZZ] [nchar](10) NULL,
+	[GoodsKC] [int] NULL,
+	[Price] [nchar](10) NULL,
+	[CategoryID] [int] NOT NULL,
+	[Str1] [nchar](10) NULL,
+	[Str2] [nchar](10) NULL,
+	[GoodsKey] [nchar](10) NULL,
+	[GoodsJJ] [nchar](500) NULL,
+	[Max] [nvarchar](50) NULL,
+	[Min] [nvarchar](50) NULL,
+	[WarnName] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Goods] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[JobNews]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[JobNews](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[JobName] [nvarchar](200) NULL,
+	[Company] [nvarchar](200) NULL,
+	[Category] [nvarchar](200) NULL,
+	[Title] [nvarchar](200) NULL,
+	[Time] [datetime] NULL,
+	[CreateName] [nvarchar](200) NULL,
+	[NewsContent] [text] NULL,
+	[Str1] [nvarchar](200) NULL,
+	[Str2] [nvarchar](200) NULL,
+	[Str3] [nvarchar](200) NULL,
+	[Str4] [nvarchar](200) NULL,
+	[Str5] [nvarchar](200) NULL,
+	[Str6] [nvarchar](200) NULL,
+	[Str7] [nvarchar](200) NULL,
+	[Str8] [nvarchar](200) NULL,
+	[Str9] [nvarchar](200) NULL,
+	[Str10] [nvarchar](200) NULL,
+ CONSTRAINT [PK_JobNews] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Replies]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Replies](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[OrderNum] [nvarchar](200) NULL,
+	[ReContent] [nvarchar](2000) NULL,
+	[UserID] [nvarchar](200) NULL,
+	[UserName] [nvarchar](200) NULL,
+	[Time] [nvarchar](200) NULL,
+	[ZCTime] [nvarchar](200) NULL,
+	[Str1] [nvarchar](200) NULL,
+	[Str2] [nvarchar](200) NULL,
+	[Str3] [nvarchar](200) NULL,
+	[Str4] [nvarchar](200) NULL,
+	[Str5] [nvarchar](200) NULL,
+ CONSTRAINT [PK_Replies] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[RRecord]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RRecord](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CreateUserName] [nchar](10) NULL,
+	[Time] [datetime] NULL,
+	[BookID] [int] NOT NULL,
+	[ISBN] [nchar](30) NULL,
+	[BookName] [nchar](10) NULL,
+	[CategoryID] [int] NOT NULL,
+	[Str1] [nchar](10) NULL,
+	[Str2] [nchar](10) NULL,
+	[CKID] [nvarchar](200) NULL,
+	[GG] [nvarchar](200) NULL,
+	[GHSID] [nvarchar](200) NULL,
+	[Str4] [nvarchar](200) NULL,
+	[Str5] [nvarchar](200) NULL,
+	[DW] [nvarchar](200) NULL,
+ CONSTRAINT [PK_RRecord] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Topic]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Topic](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](200) NULL,
+	[Time] [nvarchar](200) NULL,
+	[UserID] [nvarchar](200) NULL,
+	[UserName] [nvarchar](200) NULL,
+	[TopicContent] [ntext] NULL,
+	[Category] [nvarchar](200) NULL,
+	[CategoryID] [nvarchar](200) NULL,
+	[LastTime] [nvarchar](200) NULL,
+	[HTNum] [nvarchar](200) NULL,
+	[Str1] [nvarchar](200) NULL,
+	[Str2] [nvarchar](200) NULL,
+	[Str3] [nvarchar](200) NULL,
+	[Str4] [nvarchar](200) NULL,
+	[Str5] [nvarchar](200) NULL,
+ CONSTRAINT [PK_Topic] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[LoginName] [nchar](50) NULL,
+	[LoginPSD] [nchar](20) NULL,
+	[UserName] [nchar](50) NULL,
+	[Sex] [nchar](10) NULL,
+	[Age] [nchar](10) NULL,
+	[Usertype] [nchar](10) NULL,
+	[UserNum] [nchar](50) NULL,
+	[Str1] [nchar](50) NULL,
+	[Str2] [nchar](10) NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Warning]    Script Date: 2018/5/21 11:34:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Warning](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[WarnType] [nvarchar](200) NULL,
+	[Min] [nvarchar](200) NULL,
+	[Max] [nvarchar](200) NULL,
+	[Str1] [nvarchar](200) NULL,
+	[Str2] [nvarchar](200) NULL,
+ CONSTRAINT [PK_Warning] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET IDENTITY_INSERT [dbo].[Category] ON 
+
+GO
+INSERT [dbo].[Category] ([ID], [CategoryName], [Str1], [DZ], [LXFS]) VALUES (1048, N'护肤类       ', N'1         ', NULL, NULL)
+GO
+INSERT [dbo].[Category] ([ID], [CategoryName], [Str1], [DZ], [LXFS]) VALUES (2048, N'阿里巴巴      ', N'3         ', NULL, N'022-24678923')
+GO
+INSERT [dbo].[Category] ([ID], [CategoryName], [Str1], [DZ], [LXFS]) VALUES (2049, N'美宝莲天猫旗舰店  ', N'3         ', N'广州', N'15667453211')
+GO
+INSERT [dbo].[Category] ([ID], [CategoryName], [Str1], [DZ], [LXFS]) VALUES (2050, N'彩妆类       ', N'1         ', NULL, NULL)
+GO
+INSERT [dbo].[Category] ([ID], [CategoryName], [Str1], [DZ], [LXFS]) VALUES (2051, N'稀土大街1号    ', N'2         ', NULL, NULL)
+GO
+INSERT [dbo].[Category] ([ID], [CategoryName], [Str1], [DZ], [LXFS]) VALUES (2052, N'洗护类       ', N'1         ', NULL, NULL)
+GO
+INSERT [dbo].[Category] ([ID], [CategoryName], [Str1], [DZ], [LXFS]) VALUES (2053, N'稀土大街2号    ', N'2         ', NULL, NULL)
+GO
+INSERT [dbo].[Category] ([ID], [CategoryName], [Str1], [DZ], [LXFS]) VALUES (2054, N'校园路1号     ', N'2         ', NULL, NULL)
+GO
+INSERT [dbo].[Category] ([ID], [CategoryName], [Str1], [DZ], [LXFS]) VALUES (2055, N'校园路2号     ', N'2         ', NULL, NULL)
+GO
+INSERT [dbo].[Category] ([ID], [CategoryName], [Str1], [DZ], [LXFS]) VALUES (2056, N'林荫路1号     ', N'2         ', NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Category] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Evaluate] ON 
+
+GO
+INSERT [dbo].[Evaluate] ([ID], [GHSID], [GHS], [ND], [YD], [Score], [EUrl], [Str1], [Str2], [Str3]) VALUES (3, N'47', N'供货商1', N'2017', N'2', N'89', N'20170519230650_11.doc', NULL, NULL, NULL)
+GO
+INSERT [dbo].[Evaluate] ([ID], [GHSID], [GHS], [ND], [YD], [Score], [EUrl], [Str1], [Str2], [Str3]) VALUES (4, N'47', N'供货商1', N'2017', N'3', N'90', N'20170519230843_11.doc', NULL, NULL, NULL)
+GO
+INSERT [dbo].[Evaluate] ([ID], [GHSID], [GHS], [ND], [YD], [Score], [EUrl], [Str1], [Str2], [Str3]) VALUES (5, N'47', N'供货商1', N'2017', N'5', N'90', N'20170520094944_11.doc', NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Evaluate] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Goods] ON 
+
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (15, N'兰蔻新精华肌底液            ', N'瓶                                                 ', N'lk001     ', NULL, 0, N'799       ', 1048, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1018, N'美宝莲BB霜21号           ', N'件                                                 ', N'mbl00001  ', NULL, 0, N'89        ', 2050, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1019, N'科颜氏金盏花爽肤水250ml      ', N'瓶                                                 ', N'kys00001  ', NULL, 0, N'330       ', 1048, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1020, N'欧莱雅清润精华膜力水130ml     ', N'瓶                                                 ', N'oly00001  ', NULL, 0, N'150       ', 1048, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1021, N'妮维雅云柔泡沫洁面慕斯150ml    ', N'瓶                                                 ', N'nwy00001  ', NULL, 0, N'59        ', 1048, N'1         ', NULL, NULL, NULL, N'10000', N'100', N'A类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1022, N'雪肌精乳液130ml          ', N'瓶                                                 ', N'xjj00001  ', NULL, 0, N'390       ', 1048, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1023, N'馥蕾诗大马士革玫瑰花瓣水250ml   ', N'瓶                                                 ', N'fls00001  ', NULL, 0, N'390       ', 1048, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1024, N'丝塔芙洁面乳473ml         ', N'瓶                                                 ', N'stf00001  ', NULL, 0, N'158       ', 1048, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1025, N'韩束巨补水墨菊深度补水露120ml   ', N'瓶                                                 ', N'hs00001   ', NULL, 0, N'150       ', 1048, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1026, N'兰芝修颜隔离霜-绿色30ml      ', N'瓶                                                 ', N'lz00001   ', NULL, 0, N'245       ', 2050, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1027, N'雅诗兰黛持妆无瑕气垫粉霜21号     ', N'盒                                                 ', N'ysld00001 ', NULL, 0, N'420       ', 2050, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1028, N'迪奥全新凝脂恒久粉饼010号      ', N'盒                                                 ', N'dior00001 ', NULL, 0, N'570       ', 2050, N'2         ', NULL, NULL, NULL, N'100', N'10', N'B类')
+GO
+INSERT [dbo].[Goods] ([ID], [GoodsName], [GoodsCBS], [ISBN], [GoodsZZ], [GoodsKC], [Price], [CategoryID], [Str1], [Str2], [GoodsKey], [GoodsJJ], [Max], [Min], [WarnName]) VALUES (1029, N'沙宣修护水养洗发水500ml      ', N'瓶                                                 ', N'sx00001   ', NULL, 0, N'69        ', 2052, N'1         ', NULL, NULL, NULL, N'10000', N'100', N'A类')
+GO
+SET IDENTITY_INSERT [dbo].[Goods] OFF
+GO
+SET IDENTITY_INSERT [dbo].[JobNews] ON 
+
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (83, N'软件开发', N'招聘主体名称', NULL, N'招聘软件开发人员', NULL, N'2017/4/8', N'2134324234', N'5', N'41', N'0', NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (84, NULL, NULL, N'学校新闻', N'学校新闻奥斯卡君多或看', NULL, N'2017/4/8', N'学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看学校新闻奥斯卡君多或看', NULL, NULL, N'1', NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (85, NULL, N'www.baidu.com', NULL, N'联系我们', NULL, N'2017/4/8', N'联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (86, NULL, N'20170518203218_11.png', N'赞助商', N'百度', NULL, N'2017/4/18', N'系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助系统帮助', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (87, NULL, N'20170518203338_222.png', N'赞助商', N'阿里巴巴', NULL, N'2017/4/18', N'系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍系统介绍', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (88, NULL, NULL, N'通知公告', N'关于2017上半年评估的通知', NULL, N'2017/4/21', N'关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知关于2017上半年评估的通知', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (89, NULL, N'35', N'日程安排', N'肠胃科', NULL, N'2017/5/5', N'医生介绍 &nbsp;', N'星期一', N'10:00-12:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (91, NULL, NULL, N'网站新闻', N'网站新闻', NULL, N'2017/5/18', N'网站新闻网站新闻网站新闻网站新闻', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (92, NULL, N'20170518204333_11.png', N'赞助商', N'赞助商1', NULL, N'2017/5/18', N'1111', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (93, NULL, N'20170518204349_222.png', N'赞助商', N'赞助商2', NULL, N'2017/5/18', N'赞助商1赞助商1赞助商1赞助商1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (94, NULL, N'20170518204404_11.png', N'赞助商', N'赞助商3', NULL, N'2017/5/18', N'111', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (95, NULL, N'20170518204423_11.png', N'赞助商', N'赞助商4', NULL, N'2017/5/18', N'<div class="article" style="color:#333333;font-family:微软雅黑, ''Microsoft YaHei'', arial, sans-serif;font-size:14px;">
+	<div class="detail_left clear-fix">
+		<div class="detail_left_cnt">
+			<div class="J-contain_detail_cnt contain_detail_cnt" id="J-contain_detail_cnt" style="font-size:16px;">
+				<p style="text-indent:2em;">
+					5月14日，直升机所“邀您看航空”通航开放日展示了从研究所“自我介绍”和简要发展历史，到我国直升机发展历程。
+				</p>
+				<p style="text-indent:2em;">
+					<img src="http://imgmini.eastday.com/pushimg/20170518/1495068720376741.png" title="1495068720376741.png" alt="16302435162749459877.png" />
+				</p>
+				<p style="text-indent:2em;">
+					<img src="http://imgmini.eastday.com/pushimg/20170518/1495068729799589.png" title="1495068729799589.png" alt="17605563184469615036.png" />
+				</p>
+				<p style="text-indent:2em;">
+					活动期间，景德镇市第一中学、第十六中学等学校700多名学生到场参观。值得关注的是，在展出的诸多模型中，一款类似美国MV22的倾转旋翼机模型相当显眼。军事专家王云飞曾表示，中国建造两栖攻击舰的最大短板不在于造船，而是缺乏类似MV22的这种高效舰载运输平台。至此中国两栖攻击舰的最大短板或即将被补齐。<a id="goback_home" href="http://mini.eastday.com/?frdetail" target="_blank">返回东方头条首页&gt;&gt;</a>
+				</p>
+			</div>
+		</div>
+		<div class="gg_item_bomttom_cnt" style="margin:0px auto;color:#DDDDDD;">
+		</div>
+	</div>
+</div>
+<div class="aside" style="color:#333333;font-family:微软雅黑, ''Microsoft YaHei'', arial, sans-serif;font-size:14px;">
+	<div class="detail_right_cnt clear-fix">
+		<div class="gg_channel_r_b gg_channel_r_b_t gg_right1" id="gg_right1" style="color:#DDDDDD;">
+			<div id="_og8yooow0wy1ra4i">
+			</div>
+			<iframe frameborder="0" src="http://boardx.huanqiu.com/smu0/h.html?#r97770114475861190000u2835725dpt1495111492127m0" style="width:300px;height:250px;">
+			</iframe>
+		</div>
+		<div class="xfcnt_lft clear-fix">
+			<div class="main_r_title">
+				<h4 style="font-size:1em;">
+					<span style="font-size:20px;font-weight:400;color:#EC4B4B;line-height:30px;"><span style="background-color:#EC4B4B;"></span>今日热点</span>
+				</h4>
+			</div>
+			<div class="main_item_cnt">
+				<ul id="hot_daily" class="main_item_news">
+					<li>
+						<a href="http://mini.eastday.com/a/170518065858937.html?xx=1" target="_blank" class="news_pic"><img class="animation scrollLoading" src="http://05.imgmini.eastday.com/mobile/20170518/20170518065858_37e7458551bb3445258e27d47a033eba_1_mwpm_03200403.jpeg" alt="46岁佟掌柜闫妮近照，皮肤松弛浮肿似路人，活动现场又唱又跳" width="145" height="105" /></a><a href="http://mini.eastday.com/a/170518065858937.html?xx=1" target="_blank" class="title_news">46岁佟掌柜闫妮近照，皮肤松弛浮肿似路人，活动现场又唱又跳</a>
+					</li>
+					<li>
+						<a href="http://mini.eastday.com/a/170518063119725.html?xx=1" target="_blank" class="news_pic"><img class="animation scrollLoading" src="http://03.imgmini.eastday.com/mobile/20170518/20170518063119_1e4caa85845133d8ed7ff5b473d8eaa6_4_mwpm_03200403.jpeg" alt="李晨冰冰婚期曝光，杨幂新戏《逆时营救》获得好评" width="145" height="105" /></a><a href="http://mini.eastday.com/a/170518063119725.html?xx=1" target="_blank" class="title_news">李晨冰冰婚期曝光，杨幂新戏《逆时营救》获得好评</a>
+					</li>
+					<li>
+						<a href="http://mini.eastday.com/a/170518072921327.html?xx=1" target="_blank" class="news_pic"><img class="animation scrollLoading" src="http://02.imgmini.eastday.com/mobile/20170518/20170518_679c9f585a4efeb1160d7280aede631f_cover_mwpm_03200403.jpeg" alt="蒋介石下葬要穿七条裤子，原因这么尴尬，只有宋美龄敢说出来" width="145" height="105" /></a><a href="http://mini.eastday.com/a/170518072921327.html?xx=1" target="_blank" class="title_news">蒋介石下葬要穿七条裤子，原因这么尴尬，只有宋美龄敢说出来</a>
+					</li>
+					<li>
+						<a href="http://mini.eastday.com/a/170518071034419.html?xx=1" target="_blank" class="news_pic"><img class="animation scrollLoading" src="http://04.imgmini.eastday.com/mobile/20170518/20170518071034_c9f339391d0b2de80e5839366f4048a0_2_mwpm_03200403.jpeg" alt="十二星座最败家的是谁" width="145" height="105" /></a><a href="http://mini.eastday.com/a/170518071034419.html?xx=1" target="_blank" class="title_news">十二星座最败家的是谁</a>
+					</li>
+				</ul>
+			</div>
+			<div class="gg_channel_r_b gg_detail_baidu clear-fix gg_right2" id="right2" style="color:#DDDDDD;font-size:0px;">
+				<div class="dsp_fourpic" style="padding:12px 0px 6px 3px;background-color:#FFFFFF;">
+					<div class="ad_ct" style="text-align:center;font-size:14px;">
+						<div class="dsp_item img_click_dsp">
+							<div class="dsp_img">
+								<a href="http://wandexi.com/df/zj/tnb2/?pc3" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/6def1020-3511-43b9-8277-376e13338fc7.png" alt="" style="width:147px;height:110px;" /></a>
+							</div>
+<a class="dsp_txt" href="http://wandexi.com/df/zj/tnb2/?pc3" target="_blank">糖尿病再也不用打胰岛素了，1招彻底根治！</a>
+						</div>
+						<div class="dsp_item nomr img_click_dsp">
+							<div class="dsp_img">
+								<a href="http://wandexi.com/df/zj/tnb2/?pc3" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/109f3eae-abed-402c-a9d3-1a060986b48f.png" alt="" style="width:147px;height:110px;" /></a>
+							</div>
+<a class="dsp_txt" href="http://wandexi.com/df/zj/tnb2/?pc3" target="_blank">糖尿病再也不用打胰岛素了，1招彻底根治！</a>
+						</div>
+						<div class="dsp_item img_click_dsp">
+							<div class="dsp_img">
+								<a href="http://wandexi.com/df/zj/tnb2/?pc3" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/e4475677-7d86-48ed-9a33-2adbda938e30.png" alt="" style="width:147px;height:110px;" /></a>
+							</div>
+<a class="dsp_txt" href="http://wandexi.com/df/zj/tnb2/?pc3" target="_blank">糖尿病再也不用打胰岛素了，1招彻底根治！</a>
+						</div>
+						<div class="dsp_item nomr img_click_dsp">
+							<div class="dsp_img ">
+								<a href="http://wandexi.com/df/zj/tnb2/?pc3" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/d6a3d25c-05cb-4a01-b463-b839ad0ed905.png" alt="" style="width:147px;height:110px;" /></a>
+							</div>
+<a class="dsp_txt" href="http://wandexi.com/df/zj/tnb2/?pc3" target="_blank">糖尿病再也不用打胰岛素了，1招彻底根治！</a>
+						</div>
+					</div>
+<span class="dsp_icon" style="font-size:12px;color:#FFFFFF;line-height:17px;background-color:#959595;">广告</span>
+				</div>
+			</div>
+			<div class="main_r_title">
+				<h4 style="font-size:1em;">
+					<span style="font-size:20px;font-weight:400;color:#EC4B4B;line-height:30px;"><span style="background-color:#EC4B4B;"></span>特别推荐</span>
+				</h4>
+			</div>
+			<div class="main_item_cnt" id="unartificial">
+				<ul id="special_more_item" class="special-list">
+					<li class="special-item">
+						<a class="clearfix active" href="http://mini.eastday.com/a/170518063056134.html?xx=1" target="_blank">
+						<p class="fl img">
+							<img class="scrollLoading" src="http://04.imgmini.eastday.com/mobile/20170518/20170517_c96f98b985b8b8b6b08c424d90274ae1_cover_mwpm_03200403.png" width="100" height="75" alt="你绝对想不到：抗日战争8年，中共军队到底打死多少日军?" style="width:100px;height:75px;" />
+						</p>
+						<p class="txt" style="margin-left:110px;font-weight:700;">
+							你绝对想不到：抗日战争8年，中共军队到底打死多少日军?
+						</p>
+</a>
+					</li>
+					<li class="special-item">
+						<a class="clearfix " href="http://mini.eastday.com/a/170518065844422.html?xx=1" target="_blank"><span class="index i1" style="line-height:14px;"></span>
+						<p class="txt" style="margin-left:24px;">
+							韩媒：文喜相赴日谈慰安妇问题传达国民意愿
+						</p>
+</a>
+					</li>
+					<li class="special-item">
+						<a class="clearfix " href="http://mini.eastday.com/a/170518063256052.html?xx=1" target="_blank"><span class="index i2" style="line-height:14px;"></span>
+						<p class="txt" style="margin-left:24px;">
+							国外养殖新品种全身无毛的鸡，食用起来方便，口感甚佳！
+						</p>
+</a>
+					</li>
+					<li class="special-item">
+						<a class="clearfix " href="http://mini.eastday.com/a/170518021615691.html?xx=1" target="_blank"><span class="index i3" style="line-height:14px;"></span>
+						<p class="txt" style="margin-left:24px;">
+							日军军帽上“屁帘”似的两块布条只是为防冻？事实可没这么简单
+						</p>
+</a>
+					</li>
+					<li class="special-item">
+						<a class="clearfix " href="http://mini.eastday.com/a/170518071607425.html?xx=1" target="_blank"><span class="index i4" style="line-height:14px;"></span>
+						<p class="txt" style="margin-left:24px;">
+							猪器官移植给人非天方夜谭 猪肉生产商欲打造生产链
+						</p>
+</a>
+					</li>
+					<li class="special-item">
+						<a class="clearfix " href="http://mini.eastday.com/a/170518055557741.html?xx=1" target="_blank"><span class="index i5" style="line-height:14px;"></span>
+						<p class="txt" style="margin-left:24px;">
+							你经常做噩梦吗？噩梦有可能预示着这3种疾病
+						</p>
+</a>
+					</li>
+					<li class="special-item">
+						<a class="clearfix " href="http://mini.eastday.com/a/170518042608453.html?xx=1" target="_blank"><span class="index i6" style="line-height:14px;"></span>
+						<p class="txt" style="margin-left:24px;">
+							首个无性别公厕未发挥设置初衷 如厕者约九成是男性
+						</p>
+</a>
+					</li>
+					<li class="special-item">
+						<a class="clearfix " href="http://mini.eastday.com/a/170518073032281.html?xx=1" target="_blank"><span class="index i7" style="line-height:14px;"></span>
+						<p class="txt" style="margin-left:24px;">
+							中国历史上智商最高的五个人，诸葛亮垫底，姜子牙第二！
+						</p>
+</a>
+					</li>
+					<li class="special-item">
+						<a class="clearfix " href="http://mini.eastday.com/a/170518002541361.html?xx=1" target="_blank"><span class="index i8" style="line-height:14px;"></span>
+						<p class="txt" style="margin-left:24px;">
+							继女遭鬼父「当作性奴」性侵多年，还拍片威胁上传让她「像李宗瑞案一样」被看光光！
+						</p>
+</a>
+					</li>
+					<li class="special-item">
+						<a class="clearfix " href="http://mini.eastday.com/a/170518055130056.html?xx=1" target="_blank"><span class="index i9" style="line-height:14px;"></span>
+						<p class="txt" style="margin-left:24px;">
+							警卫员披露：项英被自己的副官刘厚总残忍枪杀
+						</p>
+</a>
+					</li>
+				</ul>
+			</div>
+			<div class="gg_channel_r_b gg_right3" id="right3" style="color:#DDDDDD;padding:0px 0px 0px 32px;font-size:0px;">
+				<div class="dsp_fourpic" style="padding:12px 0px 6px 3px;background-color:#FFFFFF;">
+					<div class="ad_ct" style="text-align:center;font-size:14px;">
+						<div class="dsp_item img_click_dsp">
+							<div class="dsp_img">
+								<a href="http://man001.skymedoc.info/" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/a9a03713-a2c9-4e8e-ba24-1dbe2f82016c.png" alt="" style="width:147px;height:110px;" /></a>
+							</div>
+<a class="dsp_txt" href="http://man001.skymedoc.info/" target="_blank">她欲求不瞒了</a>
+						</div>
+						<div class="dsp_item nomr img_click_dsp">
+							<div class="dsp_img">
+								<a href="http://man001.skymedoc.info/" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/92b287f9-d7e7-40a6-9a21-3ef9107337b1.png" alt="" style="width:147px;height:110px;" /></a>
+							</div>
+<a class="dsp_txt" href="http://man001.skymedoc.info/" target="_blank">你猜这是什么</a>
+						</div>
+						<div class="dsp_item img_click_dsp">
+							<div class="dsp_img">
+								<a href="http://man001.skymedoc.info/" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/6b4665ca-50b0-4164-a687-b66127d7dc3c.png" alt="" style="width:147px;height:110px;" /></a>
+							</div>
+<a class="dsp_txt" href="http://man001.skymedoc.info/" target="_blank">她再看你快点</a>
+						</div>
+						<div class="dsp_item nomr img_click_dsp">
+							<div class="dsp_img ">
+								<a href="http://man001.skymedoc.info/" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/2d746389-9d93-4b5c-a7ed-915e4c281799.png" alt="" style="width:147px;height:110px;" /></a>
+							</div>
+<a class="dsp_txt" href="http://man001.skymedoc.info/" target="_blank">持久她喜欢！</a>
+						</div>
+					</div>
+<span class="dsp_icon" style="font-size:12px;color:#FFFFFF;line-height:17px;background-color:#959595;">广告</span>
+				</div>
+			</div>
+			<div class="main_item_cnt qiwenyishi">
+				<div id="_ytmh5onv27pq4cxr">
+				</div>
+				<iframe src="http://www.lieqinews.com/ssp3.html?qid=ttdlq" frameborder="0" width="300" height="184">
+				</iframe>
+				<iframe src="http://mini.eastday.com/ssp4.html?qid=360sousuo" frameborder="0" width="300" height="140">
+				</iframe>
+			</div>
+			<div class="gg_channel_r_b gg_right4" id="gg_right4" style="color:#DDDDDD;">
+				<div id="_p1bgq6lvmwws714i">
+				</div>
+				<div id="tanxssp_con_mm_108636149_8862290_42786782" style="font-size:12px;font-family:tahoma, ''Hiragino Sans GB'', ''microsoft yahei'', sans-serif;">
+					<iframe id="tanxssp-tuwen-iframemm_108636149_8862290_42786782" src="http://a1.alicdn.com/creation/html/2016/12/16/creation-116124nraHIv65Quq-7377780.html?tanxdspv=http%3a%2f%2frdstat.tanx.com%2ftrd%3ff%3d%26k%3da09e279ad7f7a12a%26p%3dmm_108636149_8862290_42786782%26pvid%3d0bb490450000591d9414119100092dde%26s%3d300x400%26d%3d59420271%26t%3d1495110676&amp;pid=mm_108636149_8862290_42786782&amp;tp=3&amp;tsid=0bb490450000591d9414119100092dde&amp;u=http%3A%2F%2Fmini.eastday.com%2Fa%2Fn170518085249751.html%3Fqid%3D360sousuo%26vqid%3D5Lit5Zu954mI6bG86bmw5Lqu55u45pmv5b636ZWH&amp;r=http%3A%2F%2Fwww.so.com%2Flink%3Furl%3Dhttp%253A%252F%252Fmini.eastday.com%252Fa%252Fn170518085249751.html%253Fqid%253D360sousuo%2526vqid%253D5Lit5Zu954mI6bG86bmw5Lqu55u45pmv5b636ZWH%26q%3D%25E4%25B8%25AD%25E5%259B%25BD%25E7%2589%2588%25E9%25B1%25BC%25E9%25B9%25B0%25E4%25BA%25AE%25E7%259B%25B8%25E6%2599%25AF%25E5%25BE%25B7%25E9%2595%2587%26ts%3D1495110665%26t%3Dbb6f8ab3f9d5be8698e3b3b64207e8c&amp;tp=3&amp;tsid=0bb490450000591d9414119100092dde&amp;pid=mm_108636149_8862290_42786782" frameborder="0" style="width:300px;height:400px;">
+					</iframe>
+<a id="iconmm_108636149_8862290_42786782" target="_blank" href="http://pro.taobao.com/index.htm?spm=a2320.7388781.1998051528.5.JOvNkN"><span id="icon_smallmm_108636149_8862290_42786782"><img src="http://atanx.alicdn.com/t/img/TB1DmcoJXXXXXavXpXXXXXXXXXX-26-26.png" border="0" style="width:13px;height:13px;" /></span></a><a id="sxmm_108636149_8862290_42786782"><span id="sx1mm_108636149_8862290_42786782"><img src="http://atanx.alicdn.com/t/img/TB1tWvVJFXXXXc_aXXXXXXXXXXX-40-26.png" border="0/" style="width:20px;height:13px;" /></span></a>
+				</div>
+			</div>
+			<div class="main_r_title">
+				<h4 style="font-size:1em;">
+					<span style="font-size:20px;font-weight:400;color:#EC4B4B;line-height:30px;"><span style="background-color:#EC4B4B;"></span>小编精选</span>
+				</h4>
+			</div>
+			<div id="editselect" class="main_item_cnt">
+				<ul class="sl-list">
+					<li class="sl-item first pr">
+						<a class="title-main" href="http://mini.eastday.com/a/170518002313455.html?xx=1" target="_blank">百万宾利校园炸街求男友，现场男生见到车主后，却只觉菊花一紧</a>
+					</li>
+					<li class="sl-item pr">
+						<a class="title-sub" href="http://mini.eastday.com/a/170518065909668.html?xx=1" target="_blank">身上出现这几个特征，预示好运要来临，财气大发</a>
+					</li>
+					<li class="sl-item pr">
+						<a class="title-sub" href="http://mini.eastday.com/a/170518071033915.html?xx=1" target="_blank">十二星座解析《欢乐颂》中哪个男人更值得嫁？</a>
+					</li>
+					<li class="sl-item pr">
+						<a class="title-sub" href="http://mini.eastday.com/a/170518060635472.html?xx=1" target="_blank">华宸信托员工诈骗两年无人察觉 7500多万挥霍一空</a>
+					</li>
+					<li class="sl-item pr">
+						<a class="title-sub" href="http://mini.eastday.com/a/170518044507449.html?xx=1" target="_blank">伊朗保守派总统候选人莱希大选前造势</a>
+					</li>
+				</ul>
+			</div>
+			<div class="gg_channel_r_b gg_right6" style="color:#DDDDDD;padding:0px 0px 0px 32px;">
+				<div id="_85ldmoanpb9pmn29">
+				</div>
+				<iframe frameborder="0" src="http://boardx.huanqiu.com/smu0/h.html?#r97770114475861190000u2827607dpt1495111492127m0" style="width:300px;height:250px;">
+				</iframe>
+			</div>
+			<div class="main_r_title">
+				<h4 style="font-size:1em;">
+					<span style="font-size:20px;font-weight:400;color:#EC4B4B;line-height:30px;"><span style="background-color:#EC4B4B;"></span>热点排行</span>
+				</h4>
+			</div>
+			<div class="main_item_cnt">
+				<ul id="sift_item_cnt" class="sift_item">
+					<li>
+						<a href="http://mini.eastday.com/a/170518021654874.html?xx=1" target="_blank"><span style="font-size:0px;"><img class="scrollLoading" src="http://mini.eastday.com/assets/images/recommend-icon.gif" alt="泰国姑娘胸口除纹身失败 胸口整个烂掉" style="width:100px;height:75px;" /></span>
+						<p>
+							泰国姑娘胸口除纹身失败 胸口整个烂掉
+						</p>
+</a>
+					</li>
+					<li>
+						<a href="http://mini.eastday.com/a/170518052933537.html?xx=1" target="_blank"><span style="font-size:0px;"><img class="scrollLoading" src="http://mini.eastday.com/assets/images/recommend-icon.gif" alt="中邮基金投资总监邓立新失联 原因不明" style="width:100px;height:75px;" /></span>
+						<p>
+							中邮基金投资总监邓立新失联 原因不明
+						</p>
+</a>
+					</li>
+					<li>
+						<a href="http://mini.eastday.com/a/170518061851627.html?xx=1" target="_blank"><span style="font-size:0px;"><img class="scrollLoading" src="http://mini.eastday.com/assets/images/recommend-icon.gif" alt="蒙内铁路列车员备战开通试运营" style="width:100px;height:75px;" /></span>
+						<p>
+							蒙内铁路列车员备战开通试运营
+						</p>
+</a>
+					</li>
+					<li>
+						<a href="http://mini.eastday.com/a/170518061607464.html?xx=1" target="_blank"><span style="font-size:0px;"><img class="scrollLoading" src="http://mini.eastday.com/assets/images/recommend-icon.gif" alt="打豆浆剩下的豆渣你都扔了吗？" style="width:100px;height:75px;" /></span>
+						<p>
+							打豆浆剩下的豆渣你都扔了吗？
+						</p>
+</a>
+					</li>
+				</ul>
+			</div>
+			<div class="gg_channel_r_b gg_right7" id="gg_right7" style="color:#DDDDDD;padding:0px 0px 13px 32px;">
+				<div id="_k9mi4x9o7vefusor">
+				</div>
+				<div>
+				</div>
+			</div>
+			<div class="gg_channel_r_b gg_right8" id="gg_right8" style="color:#DDDDDD;">
+				<div id="_grtxzqlvgy9o1or">
+				</div>
+				<div id="starIframe_wrapper_1">
+					<iframe id="starIframe1" src="http://inte.sogou.com/ct?id=459942&amp;h=250&amp;w=300&amp;fv=25&amp;if=16&amp;sohuurl=http%3A%2F%2Fmini.eastday.com%2Fa%2Fn170518085249751.html%3Fqid%3D360sousuo%26vqid%3D5Lit5Zu954mI6bG86bmw5Lqu55u45pmv5b636ZWH&amp;refer=http%3A%2F%2Fwww.so.com%2Flink%3Furl%3Dhttp%253A%252F%252Fmini.eastday.com%252Fa%252Fn170518085249751.html%253Fqid%253D360sousuo%2526vqid%253D5Lit5Zu954mI6bG86bmw5Lqu55u45pmv5b636ZWH%26q%3D%25E4%25B8%25AD%25E5%259B%25BD%25E7%2589%2588%25E9%25B1%25BC%25E9%25B9%25B0%25E4%25BA%25AE%25E7%259B%25B8%25E6%2599%25AF%25E5%25BE%25B7%25E9%2595%2587%26ts%3D1495110665%26t%3Dbb6f8ab3f9d5be8698e3b3b64207e8c&amp;rnd=75007a3ab2562293&amp;z=40225317b9ef9899&amp;lmt=1495068758&amp;srp=1366,768&amp;ccd=24&amp;lhi=1&amp;eja=true&amp;npl=21&amp;nmi=41&amp;ece=true&amp;lan=zh-CN&amp;bi=1&amp;t1=539&amp;t2=1495111484&amp;pvt=1495111483287&amp;ssi0=259&amp;ti=%E4%B8%AD%E5%9B%BD%E7%89%88%22%E9%B1%BC%E9%B9%B0%22%E4%BA%AE%E7%9B%B8%E6%99%AF%E5%BE%B7%E9%95%87%20%E4%B8%A4%E6%A0%96%E6%94%BB%E5%87%BB%E8%88%B0%E8%A1%A5%E9%BD%90%E6%9C%80%E5%A4%A7%E7%9F%AD%E6%9D%BF_%E5%86%9B%E4%BA%8B%E9%A2%91%E9%81%93_%E4%B8%9C%E6%96%B9%E5%A4%B4%E6%9D%A1&amp;bs=1349,611&amp;tmp_cdif=0&amp;mi=0&amp;m=MTQ5NTExMDY3NV9wcmV0dHkgZG9nXzQ1OTk0MgA-&amp;ex=&amp;glx=0" width="300" height="250" frameborder="0">
+					</iframe>
+				</div>
+			</div>
+			<div class="gg_channel_r_b gg_right9" style="color:#DDDDDD;">
+				<div id="_t41qfiyx9g6cg14i">
+				</div>
+				<div id="tanxssp_con_mm_108636149_8862290_51726247" style="font-size:12px;font-family:tahoma, ''Hiragino Sans GB'', ''microsoft yahei'', sans-serif;">
+					<iframe id="tanxssp-outer-iframemm_108636149_8862290_51726247" frameborder="0" style="width:300px;height:250px;">
+					</iframe>
+阿里云<a id="sxmm_108636149_8862290_51726247"><span id="sx1mm_108636149_8862290_51726247"><img src="http://atanx.alicdn.com/t/img/TB1tWvVJFXXXXc_aXXXXXXXXXXX-40-26.png" border="0/" style="width:20px;height:13px;" /></span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="bottom_over_cnt" style="color:#333333;font-family:微软雅黑, ''Microsoft YaHei'', arial, sans-serif;font-size:14px;">
+	<div class="gg_item_bomttom_cnt" id="gg_item_bomttom_cnt-bk" style="margin:0px auto;color:#DDDDDD;">
+		<div id="_e8n2trhz52qsq0k9">
+		</div>
+		<div id="mvdiv_1639333_holder">
+			<div>
+				<div id="mvdiv_1639333">
+				</div>
+			</div>
+			<iframe frameborder="0" src="http://show.g.mediav.com/s?ver=1.2.6&amp;enifr=1&amp;showid=h7daUY&amp;type=1&amp;of=2&amp;uid=14951114853031473156940421913905&amp;isifr=0&amp;title=%E4%B8%AD%E5%9B%BD%E7%89%88%E9%B1%BC%E9%B9%B0%E4%BA%AE%E7%9B%B8%E6%99%AF%E5%BE%B7%E9%95%87%20%E4%B8%A4%E6%A0%96%E6%94%BB%E5%87%BB%E8%88%B0%E8%A1%A5%E9%BD%90%E6%9C%80%E5%A4%A7&amp;refurl=http%3A%2F%2Fwww.so.com%2Flink%3Furl%3Dhttp%3A%2F%2Fmini.eastday.com%2Fa%2Fn170518085249751.html%3Fqid%3D360sousuo%26vqid%3D5Lit5Zu954mI6bG86bmw5Lqu55u45pmv5b636ZWH%26q%3D%E4%B8%AD%E5%9B%BD%E7%89%88%E9%B1%BC%E9%B9%B0%E4%BA%AE%E7%9B%B8%E6%99%AF%E5%BE%B7%E9%95%87%26ts%3D1495" style="width:640px;height:60px;">
+			</iframe>
+		</div>
+		<div id="starIframe_wrapper_2">
+			<iframe id="starIframe2" src="http://inte.sogou.com/ct?id=681041&amp;h=110&amp;w=620&amp;fv=25&amp;if=16&amp;sohuurl=http%3A%2F%2Fmini.eastday.com%2Fa%2Fn170518085249751.html%3Fqid%3D360sousuo%26vqid%3D5Lit5Zu954mI6bG86bmw5Lqu55u45pmv5b636ZWH&amp;refer=http%3A%2F%2Fwww.so.com%2Flink%3Furl%3Dhttp%253A%252F%252Fmini.eastday.com%252Fa%252Fn170518085249751.html%253Fqid%253D360sousuo%2526vqid%253D5Lit5Zu954mI6bG86bmw5Lqu55u45pmv5b636ZWH%26q%3D%25E4%25B8%25AD%25E5%259B%25BD%25E7%2589%2588%25E9%25B1%25BC%25E9%25B9%25B0%25E4%25BA%25AE%25E7%259B%25B8%25E6%2599%25AF%25E5%25BE%25B7%25E9%2595%2587%26ts%3D1495110665%26t%3Dbb6f8ab3f9d5be8698e3b3b64207e8c&amp;rnd=75007a3ab2562293&amp;z=d417feed03eed43a&amp;lmt=1495068758&amp;srp=1366,768&amp;ccd=24&amp;lhi=1&amp;eja=true&amp;npl=21&amp;nmi=41&amp;ece=true&amp;lan=zh-CN&amp;bi=2&amp;t1=135&amp;t2=1495111486&amp;pvt=1495111483287&amp;ssi0=259&amp;ti=%E4%B8%AD%E5%9B%BD%E7%89%88%22%E9%B1%BC%E9%B9%B0%22%E4%BA%AE%E7%9B%B8%E6%99%AF%E5%BE%B7%E9%95%87%20%E4%B8%A4%E6%A0%96%E6%94%BB%E5%87%BB%E8%88%B0%E8%A1%A5%E9%BD%90%E6%9C%80%E5%A4%A7%E7%9F%AD%E6%9D%BF_%E5%86%9B%E4%BA%8B%E9%A2%91%E9%81%93_%E4%B8%9C%E6%96%B9%E5%A4%B4%E6%9D%A1&amp;bs=1349,611&amp;tmp_cdif=0&amp;mi=0&amp;m=MTQ5NTExMDY3N19wcmV0dHkgZG9nXzY4MTA0MQA-&amp;ex=&amp;glx=0" width="620" height="110" frameborder="0">
+			</iframe>
+		</div>
+	</div>
+	<div class="ggPic_item_bomttom_cnt" id="ny_xypxf" style="margin:0px auto;color:#DDDDDD;font-size:0px;">
+		<div class="dsp_adxpf" style="padding:8px 5px;">
+			<div class="ad_ct" style="padding:0px 8px;text-align:center;font-size:14px;">
+				<div class="dsp_item img_click_dsp">
+					<div class="dsp_img">
+						<a href="http://sli.tantt.cn/" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/7a48358d-c6eb-442d-8bdb-dec3d8e59f65.png" alt="" style="width:149px;height:112px;" /></a>
+					</div>
+<span class="dsp_pop" style="background-color:#000000;"></span><a class="dsp_txt" href="http://sli.tantt.cn/" target="_blank">老公不行怎办</a>
+				</div>
+				<div class="dsp_item img_click_dsp">
+					<div class="dsp_img">
+						<a href="http://sli.tantt.cn/" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/247b1a90-8c15-454e-9cc3-7591d7a8412a.png" alt="" style="width:149px;height:112px;" /></a>
+					</div>
+<span class="dsp_pop" style="background-color:#000000;"></span><a class="dsp_txt" href="http://sli.tantt.cn/" target="_blank"></a>
+				</div>
+				<div class="dsp_item img_click_dsp">
+					<div class="dsp_img">
+						<a href="http://sli.tantt.cn/" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/e284a805-e3cb-4b89-98cb-c43b8a250e9c.png" alt="" style="width:149px;height:112px;" /></a>
+					</div>
+<span class="dsp_pop" style="background-color:#000000;"></span><a class="dsp_txt" href="http://sli.tantt.cn/" target="_blank">一夜7次经历</a>
+				</div>
+				<div class="dsp_item nomr img_click_dsp">
+					<div class="dsp_img">
+						<a href="http://sli.tantt.cn/" target="_blank"><img src="http://imgsreview.dftoutiao.com/dsp/images/88003234-29f6-456c-9a12-3ef5b548deda.png" alt="" style="width:149px;height:112px;" /></a>
+					</div>
+<span class="dsp_pop" style="background-color:#000000;"></span><a class="dsp_txt" href="http://sli.tantt.cn/" target="_blank">男性持久方法</a>
+				</div>
+			</div>
+<span class="dsp_icon" style="font-size:12px;color:#FFFFFF;line-height:17px;background-color:#959595;">广告</span>
+		</div>
+	</div>
+	<div class="guess_like clear-fix" style="color:#DDDDDD;">
+		<div class="guess_title rel-recmmend" style="color:#EC4B4B;">
+			<span style="font-size:20px;line-height:30px;">相关推荐<span style="background-color:#EC4B4B;"></span></span><a href="http://mini.eastday.com/topic/index.html?uk=n170518085249751&amp;frmore" target="_blank">+更多</a>
+		</div>
+		<div class="guess_contain">
+			<ul class="recomend_content">
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170517104128028.html" target="_blank">地铁上男子见女子坐姿豪放，接下来的动作让人大跌眼镜</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518060036747.html" target="_blank">说苦瓜苦是你不会做 ，试试这样炒 清爽开胃全家老少抢着吃</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518063252244.html" target="_blank">女毒贩狱中收500封情书当“老大”上电视成知名艺人</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518060308170.html" target="_blank">章子怡和汪峰外出游玩, 两人不顾形象当众大吵, 章子怡转身离开!</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518064426039.html" target="_blank">日本根本嚣张不起来：盘点我军对日三张王牌近千枚导弹瞄着它</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518064225413.html" target="_blank">她是赵薇同学，身材不输柳岩，因拒绝绯闻一直不红</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518063434920.html" target="_blank">男子蹲在街头泣不成声，路人走过去一看也跟着难过起来！</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518073018508.html" target="_blank">人民日报评论员：新闻工作者定能倾情书写砥砺奋进的这五年</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518071802101.html" target="_blank">年薪60万的华为员工加班到9点，赶班车场景太壮观！</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518052821811.html" target="_blank">2017年驾驶证转入最新规定，要换证的人恭喜你了</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518072545652.html" target="_blank">美司法部任命科米前任做特别检察官 调查特朗普涉俄问题</a>
+				</li>
+				<li style="text-indent:20px;">
+					<span style="font-size:0px;background-color:#333333;"></span><a href="http://mini.eastday.com/a/170518075540083.html" target="_blank">宁波市拟提拔任用市管领导干部任前公示通告</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[JobNews] ([ID], [JobName], [Company], [Category], [Title], [Time], [CreateName], [NewsContent], [Str1], [Str2], [Str3], [Str4], [Str5], [Str6], [Str7], [Str8], [Str9], [Str10]) VALUES (96, NULL, N'20170518204532_11.png', N'赞助商', N'赞助商5', NULL, N'2017/5/18', N'111', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[JobNews] OFF
+GO
+SET IDENTITY_INSERT [dbo].[RRecord] ON 
+
+GO
+INSERT [dbo].[RRecord] ([ID], [CreateUserName], [Time], [BookID], [ISBN], [BookName], [CategoryID], [Str1], [Str2], [CKID], [GG], [GHSID], [Str4], [Str5], [DW]) VALUES (1023, N'1         ', CAST(0x0000A8DF00D2C4AC AS DateTime), 0, N'111111                        ', N'1         ', 0, N'11        ', N'11        ', NULL, NULL, N'2048', N'121', N'已提交', N'1')
+GO
+INSERT [dbo].[RRecord] ([ID], [CreateUserName], [Time], [BookID], [ISBN], [BookName], [CategoryID], [Str1], [Str2], [CKID], [GG], [GHSID], [Str4], [Str5], [DW]) VALUES (1024, N'1         ', CAST(0x0000A8DF00D3823E AS DateTime), 1018, N'111111                        ', N'1         ', 2050, N'1111      ', N'11        ', N'2051', NULL, N'2048', N'12221', N'已提交', N'111                                               ')
+GO
+INSERT [dbo].[RRecord] ([ID], [CreateUserName], [Time], [BookID], [ISBN], [BookName], [CategoryID], [Str1], [Str2], [CKID], [GG], [GHSID], [Str4], [Str5], [DW]) VALUES (1025, N'李之航       ', CAST(0x0000A8E00105823B AS DateTime), 0, N'ysld00001                     ', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, N'已提交', NULL)
+GO
+INSERT [dbo].[RRecord] ([ID], [CreateUserName], [Time], [BookID], [ISBN], [BookName], [CategoryID], [Str1], [Str2], [CKID], [GG], [GHSID], [Str4], [Str5], [DW]) VALUES (1026, N'李之航       ', CAST(0x0000A8E001064E27 AS DateTime), 0, N'dior00001                     ', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, N'已提交', NULL)
+GO
+SET IDENTITY_INSERT [dbo].[RRecord] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Users] ON 
+
+GO
+INSERT [dbo].[Users] ([ID], [LoginName], [LoginPSD], [UserName], [Sex], [Age], [Usertype], [UserNum], [Str1], [Str2]) VALUES (1, N'admin                                             ', N'123456              ', N'管理                                                ', N'          ', N'          ', N'管理员       ', N'                                                  ', N'                                                  ', N'          ')
+GO
+INSERT [dbo].[Users] ([ID], [LoginName], [LoginPSD], [UserName], [Sex], [Age], [Usertype], [UserNum], [Str1], [Str2]) VALUES (2014, N'1                                                 ', N'1                   ', N'李之航                                               ', N'男         ', N'25        ', N'采购员       ', NULL, NULL, NULL)
+GO
+INSERT [dbo].[Users] ([ID], [LoginName], [LoginPSD], [UserName], [Sex], [Age], [Usertype], [UserNum], [Str1], [Str2]) VALUES (2015, N'2                                                 ', N'2                   ', N'张三                                                ', NULL, NULL, N'销售员       ', NULL, NULL, NULL)
+GO
+INSERT [dbo].[Users] ([ID], [LoginName], [LoginPSD], [UserName], [Sex], [Age], [Usertype], [UserNum], [Str1], [Str2]) VALUES (2016, N'3                                                 ', N'3                   ', N'李四                                                ', NULL, NULL, N'售后员       ', NULL, NULL, NULL)
+GO
+INSERT [dbo].[Users] ([ID], [LoginName], [LoginPSD], [UserName], [Sex], [Age], [Usertype], [UserNum], [Str1], [Str2]) VALUES (2018, N'13765436781                                       ', NULL, N'白云博                                               ', N'男         ', N'32        ', N'客户        ', NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Users] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Warning] ON 
+
+GO
+INSERT [dbo].[Warning] ([ID], [WarnType], [Min], [Max], [Str1], [Str2]) VALUES (1, N'A类', N'100', N'10000', NULL, NULL)
+GO
+INSERT [dbo].[Warning] ([ID], [WarnType], [Min], [Max], [Str1], [Str2]) VALUES (2, N'B类', N'10', N'100', NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Warning] OFF
+GO
+ALTER TABLE [dbo].[Goods]  WITH CHECK ADD  CONSTRAINT [FK_Goods_Category] FOREIGN KEY([CategoryID])
+REFERENCES [dbo].[Category] ([ID])
+GO
+ALTER TABLE [dbo].[Goods] CHECK CONSTRAINT [FK_Goods_Category]
+GO

@@ -1,0 +1,45 @@
+﻿@model MVC.PagedList<DBA.Model.JobNews>
+@using MVC
+
+
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+        <th>序号<i class="sort"><img src="/Content/images/px.gif" /></i></th>
+
+           <th>标题</th> 
+          <th>时间</th> 
+            <th>导师</th> 
+            
+        <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+              @if (Model != null && Model.Count > 0)
+{
+    DBA.BLL.Users bll = new DBA.BLL.Users();
+    int i = 0;
+            foreach (var item in Model)
+        {
+            i++;    
+        <tr>
+        <td>@i</td>
+            <td>@item.Title</td>
+            <td>@item.Str1- @item.Str2 节课</td>
+             <td>@bll.GetModelList(" UserName='"+item.Company+"'").FirstOrDefault().Str1</td>
+        <td><a href="/JobNews/KCreate?ID=@item.ID"   >修改</a> 
+          <a href="#" onclick="Del(@item.ID)"   >删除</a> 
+           
+        </td>
+        </tr>    
+            }
+} 
+        </tbody>
+    </table>
+     <div class="pagination pagination-centered">
+    	  @Html.Pager(Model, new PagerOptions { ShowFirstLast = false, PrevPageText = "上一页", NextPageText = "下一页", AlwaysShowFirstLastPageNumber = true }, "Paged", new { action = "RCManage" })
+    </div>
+
+
+    
+

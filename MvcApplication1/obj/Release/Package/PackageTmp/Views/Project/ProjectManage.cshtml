@@ -1,0 +1,94 @@
+﻿@model Conris.DBA.ViewModel.ProjectSearch
+@{
+    ViewBag.Title = "DepartmentManage";
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Content/js/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/AdminUser/UserManage.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".click").click(function () {
+            $(".tip").fadeIn(200);
+        });
+
+        $(".tiptop a").click(function () {
+            $(".tip").fadeOut(200);
+        });
+
+
+
+        $(".cancel").click(function () {
+            $(".tip").fadeOut(100);
+        });
+
+    });
+</script>
+
+
+</head>
+
+
+<body>
+
+    
+    <div class="rightinfo">
+    
+
+    @Html.Action("ProjectSearch", Model)
+  @Html.Action("ProjectList", Model)
+    
+    <div class="tip">
+    	<div class="tiptop"><span>部门信息</span><a></a></div>
+        
+      <div class="tipinfo">
+        <div>
+        部门名称：<input type="text" id="iptdepname" style=" width:150px; height:30px; border: 1px solid rgb(192, 220, 236);background-color:transparent;">
+            </div>
+        </div>
+        
+        <div class="tipbtn">
+        <input name="" type="button"  class="sure" value="确定" onclick="CreateCategory()"/>&nbsp;
+        <input name="" type="button"  class="cancel" value="取消" />
+        </div>
+    
+    </div>
+    
+    
+    
+    
+    </div>
+    
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+
+</body>
+
+</html>
+<input type="hidden" id="hidID" />
+<script type="text/ecmascript">
+    function Del(id) {
+          if (confirm("确定删除该项目？")) {
+                $.ajax({
+                    type: "post",
+                    traditional: true,
+                    url: "/Project/Del",
+                    data: { ID: id },
+                    datatpye: "json",
+                    success: function (data) {
+                        if (data) {
+                           alert("删除成功！")
+                                window.location.reload();
+                        }
+                    }
+                });
+            }
+    }
+</script>

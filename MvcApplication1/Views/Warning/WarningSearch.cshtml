@@ -1,0 +1,27 @@
+﻿@model Conris.DBA.ViewModel.WarningSearch
+           <script type="text/javascript" src="/Content/js/jquery.js"></script>
+ @using (Html.BeginForm("WarningManage", "Warning", new RouteValueDictionary { { "Page", "" } }, FormMethod.Get, new { @id = "UserSub" }))
+ {
+    <div class="tools" >
+        <div style=" float:left; height:100%;text-align:center;padding:10px;">
+    库存预警名：@Html.TextBoxFor(m => m.WarnType, new { @style = "height:20px;" })
+        
+            
+             </div>
+        <div>    	<ul class="toolbar" >
+            
+            <li  onclick="Submit()"><span><img src="/Content/images/ico06.png"  /></span>搜索</li>
+   
+           
+        </ul>
+        </div>
+
+        
+   
+        </div>
+ }
+<script type="text/ecmascript">
+    function Submit() {
+        $("#UserSub").submit();
+    }
+</script>

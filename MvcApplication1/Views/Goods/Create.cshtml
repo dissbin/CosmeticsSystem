@@ -1,0 +1,68 @@
+﻿@model DBA.Model.Goods
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+    <script src="../../Scripts/jquery-1.7.1.min.js"></script>
+<link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="add_test_img"  >
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">添加化妆品</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>添加化妆品</span></div>
+    <form method="post" action="/Goods/Edit">
+    <ul class="forminfo">
+          <li><label>所属栏目</label>@Html.DropDownList("CategoryID",null, new { @class = "dfinput" })</li>
+           <li><label>化妆品名</label>@Html.TextBoxFor(m => m.GoodsName, new { @class = "dfinput" })</li>
+       <li><label>化妆品单位</label>
+           <select name="GoodsCBS" id="GoodsCBS" class = "dfinput" >
+            <option value="件">件</option>
+            <option value="盒">盒</option>
+                <option value="瓶">瓶</option>
+                             </select>
+         </li>
+         <li><label>化妆品编号</label>@Html.TextBoxFor(m => m.ISBN, new { @class = "dfinput" })</li>
+         <li><label>销售价</label>@Html.TextBoxFor(m => m.Price, new { @class = "dfinput" })</li>
+       
+     
+          <li><label>库存预警类型</label>@Html.DropDownList("Str1",null, new { @class = "dfinput" })</li>
+        @Html.HiddenFor(m=>m.ID)
+         @Html.HiddenFor(m=>m.GoodsKC)
+    <li><label>&nbsp;</label><input name="" style="border:0;" type="submit" class="btn" value="确认保存"/></li>
+    </ul>
+    </form>
+    
+    </div>
+
+
+</body>
+
+</html>
+<script type="text/ecmascript">
+    $("#CategoryID").val('@Model.CategoryID');
+    $("#GoodsCBS").val('@Model.GoodsCBS');
+    var Str1 = '@Model.Str1';
+    if ('@Model.ID' != "0") {
+        $("#Str1").val('@Model.Str1.Trim()');
+    }
+  
+</script>
+
+

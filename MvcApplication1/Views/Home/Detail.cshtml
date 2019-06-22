@@ -1,0 +1,30 @@
+﻿@model DBA.Model.JobNews
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="warp">
+  <div class="ads">
+    <img alt="" src="/Content/images/banner2.jpg" width="100%">
+  </div>
+  <div class="listpage clearfix">
+    
+    <div class="rcon">
+      <ol class="breadcrumb">
+        <li><a href="/Home/Index">首页</a></li>
+        <li class="active"> -  详细内容</li>
+      </ol>
+      <div class="newscon">
+        <div class="news-tit mt20">@Model.Title </div>
+        <div class="news-remark">发布时间：<span class="mr40">@Model.CreateName</span>
+
+        </div>
+        <div class="news-info">
+         @Html.Raw(Model.NewsContent)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>

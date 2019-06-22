@@ -1,0 +1,39 @@
+﻿@model List<DBA.Model.Department>
+
+
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+        <th>序号<i class="sort"><img src="/Content/images/px.gif" /></i></th>
+        <th>系部名称</th>
+            <th>人员数量</th>
+            
+        <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+              @if (Model != null && Model.Count > 0)
+{
+    int i = 0; 
+       
+            foreach (var item in Model)
+        {
+            i++;    
+        <tr>
+        <td>@i</td>
+        <td>@item.Name</td>
+            <td>@item.Num</td> 
+        <td><a href="/Department/Create?ID=@item.ID"   >修改</a> 
+            <a href="#" onclick="Del(@item.ID)"   >删除</a> 
+           
+        </td>
+        </tr>    
+            }
+} 
+        </tbody>
+    </table>
+    
+
+
+    
+

@@ -1,0 +1,119 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>登录-星美化妆品进销存系统</title>
+
+<link href="/Style/css/login.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/Content/js/jquery.js"></script>
+<script type="text/javascript" src="/Conetnt/js/common.js"></script>
+      <script type="text/javascript"  src="@Url.Content("~/Scripts/Login/Login.js")"></script>
+</head>
+
+<body class="login">
+	<div class="login_logo" style="margin-top:68px;"><img src="/Style/images/logo.png"></div>
+<div class="login_m">
+	<div class="login_boder">
+		<div class="login_padding">
+			<h2>用户名</h2>
+			<label>
+				<input type="text" id="txtUserName" class="txt_input txt_input2">
+			</label>
+			<h2>密码</h2>
+			<label>
+				<input type="password" name="textfield2" id="txtUserPsd" class="txt_input">
+			</label>
+			<div class="rem_sub">
+				
+				<label>
+					<input type="submit" class="sub_button" name="button" id="btnLogin" value="登录" style="opacity: 0.7;">
+				</label>
+			</div>
+		</div>
+	</div><!--login_boder end-->
+</div><!--login_m end-->
+
+<br />
+<br />
+
+<p align="center">版权所有：星美化妆品进销存系统版权所有</p>
+
+</body>
+</html>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnLogin").click(function () {
+            var LoginName = $("#txtUserName").val();
+            var LoginPwd = $("#txtUserPsd").val();
+
+            if (LoginName == "") {
+                alert("请输入您的账号！", "提示", "确定");
+                return false;
+            }
+            if (LoginPwd == "") {
+                alert("请输入您的密码！", "提示", "确定");
+                return false;
+            }
+
+            $.ajax({
+                type: "post",
+                traditional: true,
+                url: "/Home/Login",
+                data: { LoginName: LoginName, LoginPwd: LoginPwd },//
+                datatpye: "json",//服务器返回数据类型
+                success: function (data) {
+                    if (data == "0") {
+                        alert("账号或密码错误！");
+                        window.location = "/Home/Login";
+                    }
+                    else {
+                        window.location = "/Work/Index";
+                    }
+                }
+            });
+
+        });
+
+        $("body").keydown(function () {
+            if (event.keyCode == "13") {//keyCode=13是回车键
+                $('#btnLogin').click();
+            }
+        });
+    });
+    var height = $(window).height();
+    $("#container").height(height);
+    $("#bd").css("padding-top", height / 2 - $("#bd").height() / 2);
+
+    $(window).resize(function () {
+        var height = $(window).height();
+        $("#bd").css("padding-top", $(window).height() / 2 - $("#bd").height() / 2);
+        $("#container").height(height);
+
+    });
+
+    $('#remember').focus(function () {
+        $(this).blur();
+    });
+
+    $('#remember').click(function (e) {
+        checkRemember($(this));
+    });
+
+    function checkRemember($this) {
+        if (!-[1, ]) {
+            if ($this.prop("checked")) {
+                $this.parent().addClass('checked');
+            } else {
+                $this.parent().removeClass('checked');
+            }
+        }
+    }
+</script>
+
+

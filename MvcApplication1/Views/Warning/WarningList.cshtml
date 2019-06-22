@@ -1,0 +1,45 @@
+﻿@model List<DBA.Model.Warning>
+
+
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+       
+           
+             <th>预警名</th>
+            <th>最小值</th>
+      
+             <th>最大值</th>
+                
+        <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+              @if (Model != null && Model.Count > 0)
+{
+    int i = 0;
+            foreach (var item in Model)
+        {
+           
+        <tr>
+        <td>@item.WarnType</td>
+             <td>@item.Min</td>
+    <td>@item.Max</td>
+        
+        <td><a href="/Warning/Create?ID=@item.ID"   >查看或修改</a> 
+              @if (DBA.BLL.Users.GetNowUserType()=="管理员")
+              {
+            <a href="#" onclick="Del(@item.ID)"   >删除</a> 
+              }
+           
+        </td>
+        </tr>    
+            }
+} 
+        </tbody>
+    </table>
+    
+
+
+    
+

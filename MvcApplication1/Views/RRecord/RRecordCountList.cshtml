@@ -1,0 +1,42 @@
+﻿@model List<DBA.Model.RRecord>
+
+
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+                <th>序号<i class="sort"><img src="/Content/images/px.gif" /></i></th>
+                <th>化妆品编号</th> 
+                <th>化妆品名</th>
+                <th>数量</th> 
+                <th>单价</th>
+                <th>采购额</th>
+       
+        </tr>
+        </thead>
+        <tbody>
+              @if (Model != null && Model.Count > 0)
+             {
+                    int i = 0; 
+                    foreach (var item in Model)
+                    {
+                        i++;    
+                        <tr>
+                             <td>@i</td>
+                             <td>@item.ISBN</td>
+                             <td>@item.BookName</td>`
+                             <td>@item.SumNum</td>
+                             <td>@item.SinglePrice 元</td>
+                             <td>@item.SumPrice 元</td>
+
+          
+                        </tr>    
+        
+                    }
+            } 
+        </tbody>
+    </table>
+    
+
+
+    
+

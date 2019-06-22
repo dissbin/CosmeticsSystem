@@ -1,0 +1,165 @@
+﻿@model Conris.DBA.Model.Project
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+    <script src="../../Content/js/jquery-1.10.1.js"></script>
+    <link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Scripts/Uploadify/uploadify.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/Uploadify/jquery.uploadify.min.js")" type="text/javascript"></script>
+            <link rel="stylesheet" type="text/css" href="/Content/Date/jquery.datetimepicker.css"/ >
+         <link rel="stylesheet" type="text/css" href="/Scripts/chosen/jquery.multiselect.css" />
+<link rel="stylesheet" type="text/css" href="/Scripts/chosen/jquery-ui.css" />
+
+<script type="text/javascript" src="/Scripts/chosen/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/Scripts/chosen/jquery.multiselect.js"></script>
+<script src="/Content/Date/jquery.datetimepicker.js"></script>
+     <script type="text/javascript" src="/Content/js/jquery.showLoading.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Content/css/showLoading.css" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".click").click(function () {
+            $(".tip").fadeIn(200);
+        });
+
+        $(".tiptop a").click(function () {
+            $(".tip").fadeOut(200);
+        });
+
+        $(".sure").click(function () {
+            $(".tip").fadeOut(100);
+        });
+
+        $(".cancel").click(function () {
+            $(".tip").fadeOut(100);
+        });
+
+    });
+</script>
+</head>
+
+
+<body class="add_test_img">
+ 
+    <div class="rightinfo">  
+        <form method="post" action="/Project/Edit">
+<div id="tab1" class="tabson" style="display: block; text-align:center;">
+    <table border="1" width="80%">
+        <tr style=" height:50px;">
+           <td colspan="4" style="text-align:center;"><h1>创建项目</h1></td>
+        </tr>
+        
+          <tr style=" height:50px;">
+          <td>创建人</td>
+              <td id="tdjdy"> 
+               
+               <input type="text" name="CreateUserName" value="@Model.CreateUserName"/>  
+              
+                </td>
+              <td>项目名称</td>
+              <td>  @Html.TextBoxFor(m => m.ProgectName)
+                </td>
+        </tr>
+       <tr style=" height:50px;">
+          <td>项目优先级</td>
+              <td colspan="1"> @Html.TextBoxFor(m => m.ProjectOrder)
+                </td>
+             <td>状态</td>
+              <td colspan="1"> 
+               
+                  <input type="hidden" name="CreateUserID" value="@Model.CreateUserID"/>  
+               
+                   @Html.TextBoxFor(m => m.State)   
+                   <input type="hidden" name="ID" value="@Model.ID" />  
+                </td>
+        </tr>
+         <tr style=" height:50px;">
+          <td>开始时间</td>
+              <td> @Html.TextBoxFor(m => m.StartTime)
+                </td>
+              <td>结束时间</td>
+              <td>  @Html.TextBoxFor(m => m.EenTime)
+                </td>
+        </tr>
+         <tr style=" height:50px;">
+          <td>介绍</td>
+              <td colspan="3">@Html.TextAreaFor(m => m.ReView, new { @style = "height: 124px; margin: 0px; width: 505px;" })</td>
+        </tr>
+       
+                   <tr style=" height:50px;">
+          <td></td>
+              <td colspan="3">  <div class="controls">
+                      <input name="" type="submit" class="btn"  style="border:0;" value="保存" >
+                    </div></td>
+        </tr>
+
+         
+    </table>
+  
+    
+    </div>
+    
+    </form>
+    
+    
+    </div>
+         
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+</body>
+
+</html>
+<input  type="hidden" value="@Model.ID" id="HidID"/>
+
+<script type="text/ecmascript">
+    $('#StartTime').datetimepicker();
+    $('#StartTime').datetimepicker({
+        lang: "ch",
+        format: "Y/m/d",
+        timepicker: false,
+        yearEnd: 2050,
+        todayButton: false
+    });
+    $('#EenTime').datetimepicker();
+    $('#EenTime').datetimepicker({
+        lang: "ch",
+        format: "Y/m/d",
+        timepicker: false,
+        yearEnd: 2050,
+        todayButton: false
+    });
+    function getdata(UserSFZ) {
+        $.ajax({
+            type: "post",
+            url: "/BusLine/GetUserBySFZ",
+            data: { UserSFZ: $("#Xmmc").val() },
+            dataType: "json",
+            success: function (data) {
+                if (!data) {
+                    alert("没有找到该固定资产，请检查输入的固定资产编号");
+                }
+                else {
+                    if (data.Introduce!="已报废") {
+                        $("#Str1").val(data.Str1);
+                        $("#Str2").val(data.Str3);
+                        $("#Gddh").val(data.Str4);
+                    }
+                    else {
+                        alert("该固定资产已经报废，不能申请维修~");
+                    }
+                   
+                }
+            }
+        });
+    }
+</script>

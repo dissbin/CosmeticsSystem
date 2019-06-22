@@ -1,0 +1,146 @@
+﻿@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+    <script src="../../Scripts/jquery-1.7.1.min.js"></script>
+
+    <link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+
+            <link rel="stylesheet" type="text/css" href="/Content/Date/jquery.datetimepicker.css"/ >
+
+<script src="/Content/Date/jquery.datetimepicker.js"></script>
+     <script type="text/javascript" src="/Content/js/jquery.showLoading.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Content/css/showLoading.css" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".click").click(function () {
+            $(".tip").fadeIn(200);
+        });
+
+        $(".tiptop a").click(function () {
+            $(".tip").fadeOut(200);
+        });
+
+        $(".sure").click(function () {
+            $(".tip").fadeOut(100);
+        });
+
+        $(".cancel").click(function () {
+            $(".tip").fadeOut(100);
+        });
+
+    });
+</script>
+</head>
+
+
+<body class="add_test_img">
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">日程安排</a></li>
+    </ul>
+    </div>
+     
+    <div class="rightinfo">  
+<div id="tab1" class="tabson" style="display: block; text-align:center;">
+    <table border="1" width="60%">
+        <tr style=" height:50px;">
+           <td colspan="6" style="text-align:center;"><h1>日程安排</h1></td>
+        </tr>
+         <tr style=" height:50px;">
+          <td></td>
+              <td>星期一</td>
+              <td>星期二</td>
+              <td>星期三</td>
+             <td>星期四</td>
+             <td>星期五</td>
+
+        </tr>
+        <tr style=" height:50px;">
+              <td>一二</td>
+              <td id="星期一一二"></td>
+              <td id="星期二一二"> </td>
+             <td id="星期三一二"></td>
+             <td id="星期四一二"></td>
+             <td id="星期五一二"></td>
+        </tr>
+        <tr style=" height:50px;">
+          
+              <td>三四</td>
+              <td id="星期一三四"></td>
+              <td id="星期二三四"> </td>
+             <td id="星期三三四"></td>
+             <td id="星期四三四"></td>
+             <td id="星期五三四"></td>
+        </tr>
+        <tr style=" height:50px;">
+         
+              <td>五六</td>
+             <td id="星期一五六"></td>
+              <td id="星期二五六"> </td>
+             <td id="星期三五六"></td>
+             <td id="星期四五六"></td>
+             <td id="星期五五六"></td>
+        </tr>
+         <tr style=" height:50px;">
+          
+              <td>七八</td>
+             <td id="星期一七八"></td>
+              <td id="星期二七八"> </td>
+             <td id="星期三七八"></td>
+             <td id="星期四七八"></td>
+             <td id="星期五七八"></td>
+        </tr>
+        <tr style=" height:50px;">
+          
+              <td>晚修</td>
+              <td id="星期一晚修"></td>
+              <td id="星期二晚修"> </td>
+             <td id="星期三晚修"></td>
+             <td id="星期四晚修"></td>
+             <td id="星期五晚修"></td>
+        </tr>
+    </table>
+  
+    
+    </div>
+    
+    
+    
+    
+    </div>
+         
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+</body>
+
+</html>
+<script type="text/javascript">
+        $.ajax({
+            type: "post",
+            traditional: true,
+            url: "/JobNews/GetRCAP",
+            datatpye: "json",
+            success: function (data) {
+                $.each(data, function (i, n) {
+                    if (parseInt(data[i].Str3) >= 3) {
+                        $("#" + data[i].Str1 + data[i].Str2).append("<a href='#'>" + data[i].Title + "（预约已满）</a>");
+
+                    }
+                    else {
+                        $("#" + data[i].Str1 + data[i].Str2).append("<a href='/JobNews/KCreate?ID=" + data[i].ID + "'>" + data[i].Title + "（已预约" + data[i].Title + "人，最多预约3人）</a>");
+                    }
+                    });
+            }
+        });
+	</script>

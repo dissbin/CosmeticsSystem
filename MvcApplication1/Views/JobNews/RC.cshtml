@@ -1,0 +1,95 @@
+﻿@model DBA.Model.JobNews
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>日程安排</title>
+    <script src="../../Scripts/jquery-1.7.1.min.js"></script>
+        <script src="@Url.Content("~/Scripts/kindeditor/kindeditor.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/kindeditor/lang/zh_CN.js")" type="text/javascript"></script>
+<link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="add_test_img"  >
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">日程安排</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>日程安排</span></div>
+    <form method="post" action="/JobNews/REdit">
+    <ul class="forminfo">
+         <li><label>标题</label>@Html.TextBoxFor(m => m.Title, new { @class = "dfinput" })</li>
+            <li><label>心理导师</label>
+                <input type="hidden" name="Category" value="日程安排"/>
+                @Html.DropDownList("Company")</li>
+          <li><label>开课时间</label><select id="Str1" class="dfinput" name="Str1">
+              <option value="请选择">请选择</option>
+              <option value="星期一">星期一</option>
+              <option value="星期二">星期二</option>
+              <option value="星期三">星期三</option>
+              <option value="星期四">星期四</option>
+              <option value="星期五">星期五</option>
+             
+                                 </select>
+              <select id="Str2" class="dfinput" name="Str2">
+              <option value="请选择">请选择</option>
+              <option value="一二">一二节课</option>
+              <option value="三四">三四节课</option>
+              <option value="五六">五六节课</option>
+              <option value="七八">七八节课</option>
+              <option value="晚修">晚修</option>
+             
+                                 </select>
+          </li>
+       
+          <li><label>介绍</label><div>
+              @Html.Raw(Model.NewsContent)
+                               </div></li>
+
+        @Html.HiddenFor(m=>m.ID)
+        @Html.HiddenFor(m=>m.CreateName)
+            <li><label>&nbsp;</label><input name="" style="border:0;" type="button" class="btn" value="预约"/></li>
+        
+    
+    </ul>
+    </form>
+    
+    </div>
+
+
+</body>
+
+</html>
+<script type="text/ecmascript">
+    $(function () {
+        if ('@Model.ID'!="0") {
+
+            $("#Company").val('@Model.Company');
+            $("#Str1").val('@Model.Str1');
+            $("#Str2").val('@Model.Str2');
+        }
+        var editor;
+        KindEditor.ready(function (K) {
+            editor = K.create('#NewsContent',
+            {
+                uploadJson: '/Scripts/kindeditor/asp.net/upload_json.ashx',
+                fileManagerJson: '/Scripts/kindeditor/asp.net/file_manager_json.ashx',
+                allowFileManager: true
+            });
+        });
+    });
+    </script>
+

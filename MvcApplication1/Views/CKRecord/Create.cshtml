@@ -1,0 +1,117 @@
+﻿@model DBA.Model.CKRecord
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>销售</title>
+     <script src="../../Scripts/jquery-1.7.1.min.js"></script>
+<link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" href="/Style/assets/css/ace.min.css" />
+     <link rel="stylesheet" href="/Style/css/style.css"/>
+</head>
+
+<body class="add_test_img"  >
+
+	
+    
+    <div class="formbody">
+    
+   
+    <form method="post" action="/CKRecord/Edit">
+    <ul class="forminfo">
+        
+          <li><label>货号</label>@Html.TextBoxFor(m => m.ISBN, new { @class = "dfinput",@onchange="cxbook()" })</li>
+         <li><label>化妆品名称</label>@Html.TextBoxFor(m => m.BookName, new { @class = "dfinput" })</li>
+       
+         @Html.HiddenFor(m => m.CreateUserName)
+          @Html.HiddenFor(m => m.BookID)
+       
+         <li><label>库存</label>
+             <input type="text" id="kc" class = "dfinput"/>
+         </li>
+         <li><label>数量</label>@Html.TextBoxFor(m => m.Num, new { @class = "dfinput",@onchange="jisuan()" })
+             <input type="hidden" id="js"/>
+         </li>
+        
+        <li><label>总价</label>@Html.TextBoxFor(m => m.Price, new { @class = "dfinput" })</li>
+          <li><label>用户手机号码</label>@Html.TextBoxFor(m => m.Str1, new { @class = "dfinput",onchage="cx()" })</li>
+        <li><label>姓名</label>@Html.TextBoxFor(m => m.Name, new { @class = "dfinput" })</li>
+          <li><label>性别</label>@Html.TextBoxFor(m => m.Sex, new { @class = "dfinput" })</li>
+        <li><label>年龄</label>@Html.TextBoxFor(m => m.Age, new { @class = "dfinput" })</li>
+        @Html.HiddenFor(m=>m.ID)
+        @if (Model.ID==0)
+        {
+    <li>  <div class="btn_operating" style="width:900px;"><button type="submit" class="btn btn-info" type="button">确认保存</button></div></li>
+        }
+    
+    </ul>
+    </form>
+    
+    </div>
+
+
+</body>
+
+</html>
+<script type="text/ecmascript">
+    function cx() {
+        $.ajax({
+            type: "post",
+            traditional: true,
+            url: "/Users/GetUser",
+            data: { Phone: $("#GG").val() },
+            datatpye: "json",
+            success: function (data) {
+                if (data && data.length > 0) {
+                    $("#Name").val(data[0].UserName);
+                    $("#Sex").val(data[0].Sex);
+
+                    $("#Age").val(data[0].Age);
+                }
+                else {
+                    alert("当前客户没有登记过，请填写客户资料~");
+                }
+            }
+        });
+    }
+    function jisuan() {
+        if (parseFloat($("#Num").val()) > parseFloat($("#kc").val())) {
+            alert("库存不足");
+            $("#Num").val("");
+            return;
+        }
+        var dj = $("#js").val();
+        $("#Price").val(parseFloat(dj) * parseFloat($("#Num").val()));
+    }
+    function cxbook() {
+        var ISBN = $("#ISBN").val();
+        $.ajax({
+            type: "post",
+            traditional: true,
+            url: "/Goods/GetGoods",
+            data: { ISBN: ISBN},
+            datatpye: "json",
+            success: function (data) {
+                if (data&&data.length>0) {
+                    $("#BookName").val(data[0].GoodsName);
+                    $("#CategoryID").val(data[0].CategoryID);
+                    $("#BookID").val(data[0].ID);
+                    $("#js").val(data[0].Price);
+                    $("#kc").val(data[0].GoodsKC);
+                 
+                }
+                else {
+                    alert("请输入正确的货号和尺码~");
+                }
+            }
+        });
+    }
+</script>
+
+

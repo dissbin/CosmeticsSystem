@@ -1,0 +1,63 @@
+﻿@model List<DBA.Model.Goods>
+
+
+   <table class="tablelist">
+    	<thead>
+    	    <tr>
+                 <th>化妆品栏目</th>
+                 <th>化妆品名</th>
+                 <th>化妆品编号</th>
+                 <th>化妆品单位</th>
+                 <th>库存</th>
+                 <th>预警值</th>
+                 <th>预警类型</th>
+            </tr>
+        </thead>
+        <tbody>
+              @if (Model != null && Model.Count > 0)
+              {
+                    int i = 0;
+                    DBA.BLL.Category bll = new DBA.BLL.Category();
+                    foreach (var item in Model)
+                    {
+           
+                        <tr>
+                            <td>@bll.GetModel(item.CategoryID).CategoryName</td>
+                             <td>@item.GoodsName</td>
+                             <td>@item.ISBN</td>
+                             <td>@item.GoodsCBS</td>
+        
+                             @if (string.IsNullOrEmpty(item.GoodsKC.ToString()))
+                             {
+                                  <td>0</td>
+                             }
+                             else
+                             {
+                                  <td>@item.GoodsKC</td>
+                             }
+                             <td>@item.Min - @item.Max</td>
+       
+                             @if (item.GoodsKC<Convert.ToInt32(item.Min))
+                             {
+                                  <td style="color:red"> 
+                                           库存过低
+                                            </td>
+                             }
+                             else if (item.GoodsKC > Convert.ToInt32(item.Max))
+	                         {
+		                           <td style="color:red"> 库存过高</td>
+	                         }
+                             else
+                             {
+                                 <td style="color:red"></td>
+                             }                          
+                        </tr>    
+                    }
+              }
+        </tbody>
+    </table>
+    
+
+
+    
+

@@ -1,0 +1,81 @@
+﻿@model DBA.Model.JobNews
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>招聘信息</title>
+    <script src="../../Scripts/jquery-1.7.1.min.js"></script>
+        <script src="@Url.Content("~/Scripts/kindeditor/kindeditor.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/kindeditor/lang/zh_CN.js")" type="text/javascript"></script>
+<link href="/Content/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="add_test_img"  >
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">添加信息</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>添加信息</span></div>
+    <form method="post" action="/JobNews/Edit">
+    <ul class="forminfo">
+         <li><label>标题</label>@Html.TextBoxFor(m => m.Title, new { @class = "dfinput" })</li>
+           <li><label>信息类别</label><select name="Category" id="selcategory">
+               <option value="">请选择</option>
+               <option value="公司新闻">公司新闻</option>
+                <option value="优惠活动">优惠活动</option>
+               <option value="通知公告">通知公告</option>
+                <option value="主营业务">主营业务</option>
+               <option value="品牌知识">品牌知识</option>
+                <option value="保养维护">保养维护</option>
+                <option value="产品展示">产品展示</option>
+                <option value="系统信息">系统信息</option>
+                                  </select></li>
+       
+          <li><label>信息内容</label>@Html.TextAreaFor(m => m.NewsContent, new { style = "width:700px;height:300px" })</li>
+
+        @Html.HiddenFor(m=>m.ID)
+        @Html.HiddenFor(m=>m.CreateName)
+            <li><label>&nbsp;</label><input name="" style="border:0;" type="submit" class="btn" value="确认保存"/></li>
+        
+    
+    </ul>
+    </form>
+    
+    </div>
+
+
+</body>
+
+</html>
+<script type="text/ecmascript">
+    $(function () {
+        if ('@Model.ID'!="0") {
+            $("#selcategory").val('@Model.Category');
+            $("#JobName").val('@Model.JobName');
+            $("#Company").val('@Model.Company');
+        }
+        var editor;
+        KindEditor.ready(function (K) {
+            editor = K.create('#NewsContent',
+            {
+                uploadJson: '/Scripts/kindeditor/asp.net/upload_json.ashx',
+                fileManagerJson: '/Scripts/kindeditor/asp.net/file_manager_json.ashx',
+                allowFileManager: true
+            });
+        });
+    });
+    </script>
+

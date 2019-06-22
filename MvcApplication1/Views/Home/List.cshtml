@@ -1,0 +1,40 @@
+﻿@model List<DBA.Model.JobNews>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="warp">
+  <div class="ads">
+    <img alt="" src="/Content/images/banner2.jpg" width="100%">
+  </div>
+  <div class="listpage clearfix">
+    
+    <div class="rcon">
+      <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li class="active" id="lixx"> - 信息列表</li>
+      </ol>
+      <ul class="newslists">
+           @foreach (var item in Model)
+           { 
+                   <li><a class="newsline" href="/Home/Detail?ID=@item.ID" target="_blank">@item.Title</a><span class="newsdate">@item.CreateName</span></li>
+
+           }
+      </ul>
+    
+    </div>
+  </div>
+</div>
+<script type="text/ecmascript">
+    function getQueryString(key) {
+        var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+        var result = window.location.search.substr(1).match(reg);
+        return result ? decodeURIComponent(result[2]) : null;
+    }
+    $(function () {
+        var cs = getQueryString("Category");
+        $("#lixx").html("-"+cs);
+    });
+</script>

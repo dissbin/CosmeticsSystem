@@ -1,0 +1,28 @@
+﻿@model Conris.DBA.ViewModel.TopicSearch
+           <script type="text/javascript" src="/Content/js/jquery.js"></script>
+
+ @using (Html.BeginForm("TopicManage", "Topic", new RouteValueDictionary { { "Page", "" } }, FormMethod.Get, new { @id = "UserSub" })) 
+     
+ {
+    <div class="search_style" >
+        <div style=" float:left; height:100%;text-align:center;padding:10px;">
+            货号：@Html.TextBoxFor(m => m.Category, new { @style = "height:20px;" })
+            原因：@Html.TextBoxFor(m => m.Title, new { @style = "height:20px;" })
+             </div>
+        <div>    	<ul class="search_content clearfix" >
+            
+            <li  onclick="Submit()" style="margin-top:10px;"><button type="button" class="btn_search">查询</button></li>
+   
+           
+        </ul>
+        </div>
+
+        
+   
+        </div>
+ }
+<script type="text/ecmascript">
+    function Submit() {
+        $("#UserSub").submit();
+    }
+</script>
